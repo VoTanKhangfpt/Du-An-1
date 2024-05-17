@@ -1,0 +1,44 @@
+.font-size20{
+    font-size: 20pt;
+}
+
+.font-size15{
+    font-size: 15pt;
+}
+
+.color-red{
+    color: #ff0000;
+}
+
+iframe{
+    width: 100%;
+}
+/* REPONSIVE */
+/* PC */
+
+/* MENU */
+/* min-width: 1420px */
+@media (max-width: 88.75em){
+
+}
+
+/* max-width: 1024px */
+@media (max-width: 64em){
+
+}
+
+/* Tablet */
+/* min-width: 740px | max-width: 1023px*/
+@media (min-width: 46.25em) and (max-width: 63.9375em){
+    
+}
+
+/* Mobile */
+/* max-width: 739px */
+@media (max-width: 46.1875em){
+
+    .container-breadcrumb .woocommerce-breadcrumb {
+        font-size: 0.65em;
+    }
+    
+}

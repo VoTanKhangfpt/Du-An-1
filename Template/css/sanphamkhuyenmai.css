@@ -1,0 +1,332 @@
+.ladi-wraper {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.ladi-container {
+    max-width: 1200px;
+    position: relative;
+    margin: 0 auto;
+    height: 500px;
+}
+
+#SECTION63 .ladi-container .ladi-element {
+    position: absolute;
+}
+
+#SECTION63 {
+    width: 100%;
+    height: 502.633px;
+}
+
+#SECTION63>.ladi-section-background {
+    position: absolute;
+    width: 100%;
+    height: 502.633px;
+    background-color: rgb(252, 191, 0);
+}
+
+
+#IMAGE65 {
+    width: 2366px;
+    height: 512.633px;
+    top: -10px;
+    left: -583px;
+}
+
+#IMAGE64 {
+    width: 678px;
+    height: 424.976px;
+    top: 33.8285px;
+    left: 248.939px;
+}
+
+
+.ladi-image .ladi-image-background {
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: cover;
+    background-attachment: scroll;
+    background-origin: content-box;
+    position: absolute;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+#IMAGE65>.ladi-image>.ladi-image-background {
+    max-width: 2366px;
+    max-height: 512.633px;
+    top: 0px;
+    left: 0px;
+    background-image: url("../img/sanphamkhuyenmai/poster1.png");
+}
+
+#IMAGE64>.ladi-image>.ladi-image-background {
+    width: 678px;
+    height: 424.976px;
+    top: 0px;
+    left: 0px;
+    background-image: url("../img/sanphamkhuyenmai/poster2.png");
+}
+
+#SECTION89, #SECTION90 {
+    height: 1200px;
+}
+
+#SECTION89>.ladi-section-background {
+    position: absolute;
+    width: 100%;
+    height: 1200px;
+    overflow: hidden;
+    background-color: rgb(255, 255, 255);
+}
+
+#SECTION90{
+    background-color: rgb(255, 248, 227);
+}
+
+#SECTION90>.ladi-section-background {
+    position: absolute;
+    width: 100%;
+    /* height: 1200px; */
+    overflow: hidden;
+}
+
+
+#SECTION89>.ladi-overlay {
+    background-size: 100%;
+    background-attachment: scroll;
+    background-origin: content-box;
+    background-image: url("../img/sanphamkhuyenmai/ladi-overlay.png");
+    background-position: center center;
+    background-repeat: repeat;
+}
+
+#SECTION90>.ladi-overlay {
+    background-size: 100%;
+    background-attachment: scroll;
+    background-origin: content-box;
+    background-image: url("../img/sanphamkhuyenmai/ladi-overlay.png");
+    background-position: center center;
+    background-repeat: repeat;
+}
+
+.ladi-overlay {
+    position: absolute;
+    left: 0;
+    height: 1200px;
+    width: 100%;
+    pointer-events: none;
+}
+
+#SECTION89 .ladi-container,
+#SECTION90 .ladi-container {
+    display: flex;
+    flex-wrap: wrap;
+    height: 1000px;
+}
+
+.ladi-container .ladi-element {
+    width: 25%;
+}
+
+.ladi-container .ladi-element img {
+    width: 100%;
+}
+
+.ladi-container-title {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.ladi-title {
+    margin: 0 auto;
+}
+
+.ladi-image-title {
+    position: relative;
+    width: 787.471px;
+    height: 88px;
+    top: 17.892px;
+    left: 325px;
+    margin: 20px;
+}
+
+.ladi-image-title img {
+    width: 70%;
+}
+
+.ladi-transition {
+    transition: all 150ms linear 0s;
+}
+
+#SECTION89 .ladi-element:hover>.ladi-image,
+.ladi-title:hover>.ladi-image-title {
+    transform: scale(1.02);
+}
+
+#SECTION90 .ladi-element:hover>.ladi-image,
+.ladi-title:hover>.ladi-image-title {
+    transform: scale(1.02);
+}
+
+#IMAGE197 {
+    width: 390.969px;
+    height: 373.97px;
+    top: 442px;
+    left: 1289.76px;
+}
+
+#IMAGE197>.ladi-image>.ladi-image-background {
+    width: 390.969px;
+    height: 373.97px;
+    top: 0px;
+    left: 0px;
+    background-image: url("../img/sanphamkhuyenmai/manhinh/pc1.png");
+}
+
+
+
+/* REPONSIVE */
+/* PC */
+
+/* MENU */
+/* min-width: 1420px */
+@media (max-width: 88.75em) {
+    #SECTION89>.ladi-section-background{
+        height: auto;
+    }
+
+    .ladi-image .ladi-image-background{
+        background-size: contain;
+        background-position: center;
+    }
+
+}
+
+/* max-width: 1024px */
+@media (max-width: 64em) {
+    .ladi-container-title{
+        max-width: 1100px;
+    }
+
+    .ladi-image-title img{
+        width: 70%;
+    }
+
+    .ladi-image-title {
+        width: 100%;
+        top: 0px;
+        left: 0px;
+    }
+
+    #SECTION89, #SECTION90{
+        height: auto;
+    }
+
+    #SECTION89 .ladi-container, #SECTION90 .ladi-container{
+        height: auto;
+    }
+
+}
+
+/* Tablet */
+/* min-width: 740px | max-width: 1023px*/
+@media (min-width: 46.25em) and (max-width: 63.9375em) {
+
+}
+
+/* Mobile */
+/* max-width: 739px */
+@media (max-width: 46.1875em) {
+    #SECTION63>.ladi-section-background{
+        background-color: rgb(0,0,0,0);
+    }
+    .ladi-section .ladi-container {
+        max-width: 700px;
+        height: 400px;
+    }
+
+    .ladi-container .ladi-image{
+        height: 100%;
+    }
+
+    .ladi-container-title{
+        max-width: 300px;
+        text-align: center;
+    }
+
+    #SECTION63{
+        height: auto;
+    }
+
+    #SECTION63>.ladi-section-background{
+        height: 406px;
+    }
+
+    #SECTION89, #SECTION90{
+        height: 100%;
+    }
+
+    #IMAGE65 {
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        left: 0px;
+    }
+
+    #IMAGE65 > .ladi-image > .ladi-image-background {
+        width: 100%;
+        max-width: 100%;
+        top: 0px;
+        left: 0px;
+        background-image: url("../img/sanphamkhuyenmai/poster1_responsive.png");
+    }
+
+    #IMAGE64 {
+        width: 100%;
+        top: 100px;
+        left: 0px;
+        height: 300px;
+    }
+
+    #IMAGE64 > .ladi-image > .ladi-image-background {
+        width: 100%;
+        height: 80%;
+        top: 0px;
+        left: 0px;
+        background-image: url("../img/sanphamkhuyenmai/poster2_repsonsive.png");
+    }
+
+
+    .ladi-image-title{
+        width: 100%;
+        top: 0px;
+        left: 0px;
+        height: auto;
+    }
+
+    #SECTION89 .ladi-container, #SECTION90 .ladi-container{
+        height: auto;
+    }
+
+    .ladi-container .ladi-element{
+        width: 50%;
+    }
+
+    .ladi-image-title img{
+        width: 100%;
+    }
+
+    #IMAGE65>.ladi-image>.ladi-image-background{
+        max-height: 100%;
+    }
+
+    #SECTION90>.ladi-section-background{
+        height: 100%;
+    }
+}
