@@ -14,6 +14,7 @@ if ($_GET['act']) {
 //            $list_product = get_product_limit(0, 8);
 //            $listMostView = get_mostViewProduct(8);
 //            $list_categories = category_select_all();
+$getAllProduct = getAllProduct(8);
             $viewName = 'page_home';
             break;
 //        case 'about':

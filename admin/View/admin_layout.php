@@ -44,7 +44,7 @@
       <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a href="index.php" class="nav-link">Home</a>
+      <a href="admin.php" class="nav-link">Home</a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
       <a href="https://www.facebook.com/giangcoder/" class="nav-link">Liên hệ</a>
@@ -190,7 +190,7 @@
         <img src="View/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">Nguyễn Trường Giang</a>
+        <a href="admin.php" class="d-block">CryberThree</a>
       </div>
     </div>
 
@@ -212,7 +212,7 @@
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
         <li class="nav-item menu-open">
-          <a href="index.php" class="nav-link active">
+          <a href="admin.php" class="nav-link active">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
@@ -240,7 +240,7 @@
             </ul> -->
         </li>
         <li class="nav-item">
-          <a href="index.php?page=categories" class="nav-link">
+          <a href="admin.php?page=category" class="nav-link">
             <i class="nav-icon fa-solid fa-folder-open"></i>
             <p>
               Quản lí chuyên mục
@@ -250,7 +250,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="index.php?page=products" class="nav-link">
+          <a href="admin.php?page=product" class="nav-link">
             <i class="nav-icon fa-solid fa-folder-plus"></i>
             <p>
               Quản lí sản phẩm
@@ -260,7 +260,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="index.php?page=users" class="nav-link">
+          <a href="admin.php?page=user" class="nav-link">
             <i class="nav-icon fa-solid fa-user"></i>
             <p>
               Quản lí thành viên
