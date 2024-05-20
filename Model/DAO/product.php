@@ -11,9 +11,5 @@
         return pdo_query_one($sql);
     }
     
-function getAllProduct($num)
-{
-    $sql = " SELECT * FROM san_pham LIMIT".$num;
-    return pdo_query($sql);
-}
+
 ?>
