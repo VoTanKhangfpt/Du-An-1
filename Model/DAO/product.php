@@ -10,4 +10,10 @@
         $sql = "SELECT san_pham.id, nha_sx.ten FROM `san_pham` INNER JOIN nha_sx on san_pham.id_nhasx = nha_sx.id where san_pham.id = $id GROUP BY san_pham.id";
         return pdo_query_one($sql);
     }
+    
+function getAllProduct($num)
+{
+    $sql = " SELECT * FROM san_pham LIMIT".$num;
+    return pdo_query($sql);
+}
 ?>
