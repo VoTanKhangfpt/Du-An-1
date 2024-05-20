@@ -10,7 +10,7 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="View/plugins/fontawesome-free/css/all.min.css">
+  <!-- <link rel="stylesheet" href="View/plugins/fontawesome-free/css/all.min.css"> -->
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
@@ -44,7 +44,7 @@
       <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a href="admin.php" class="nav-link">Home</a>
+      <a href="index.php" class="nav-link">Home</a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
       <a href="https://www.facebook.com/giangcoder/" class="nav-link">Liên hệ</a>
@@ -190,7 +190,7 @@
         <img src="View/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="admin.php" class="d-block">CryberThree</a>
+        <a href="index.php" class="d-block">CryberThree</a>
       </div>
     </div>
 
@@ -212,7 +212,7 @@
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
         <li class="nav-item menu-open">
-          <a href="admin.php" class="nav-link active">
+          <a href="index.php" class="nav-link active">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
@@ -220,19 +220,19 @@
           </a>
           <!-- <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./index.html" class="nav-link active">
+                <a href="./admin.html" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard v1</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
+                <a href="./admin2.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard v2</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
+                <a href="./admin3.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard v3</p>
                 </a>
@@ -240,17 +240,17 @@
             </ul> -->
         </li>
         <li class="nav-item">
-          <a href="admin.php?page=category" class="nav-link">
+          <a href="index.php?mod=category" class="nav-link">
             <i class="nav-icon fa-solid fa-folder-open"></i>
             <p>
-              Quản lí chuyên mục
+              Quản lí danh mục
               <span class="badge badge-info right">6</span>
               <!-- <span class="right badge badge-danger">New</span> -->
             </p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="admin.php?page=product" class="nav-link">
+          <a href="index.php?page=product" class="nav-link">
             <i class="nav-icon fa-solid fa-folder-plus"></i>
             <p>
               Quản lí sản phẩm
@@ -260,7 +260,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="admin.php?page=user" class="nav-link">
+          <a href="index.php?page=user" class="nav-link">
             <i class="nav-icon fa-solid fa-user"></i>
             <p>
               Quản lí thành viên
@@ -279,7 +279,7 @@
 
     <!-- Preloader -->
     <!-- <div class="preloader flex-column justify-content-center align-items-center">
-      <img class="animation__shake" src="View/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+      <img class="animation__shake" src="View/img/adminLTELogo.png" alt="adminLTELogo" height="60" width="60">
     </div> -->
 
 <?php
@@ -287,46 +287,7 @@
 ?>
 
             <!--Brand section start-->
-            <div
-            class="brand-section section pt-90 pt-lg-70 pt-md-65 pt-sm-55 pt-xs-40 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
-            <div class="container">
-                <div class="row">
-                    <!--Brand Slider start-->
-                    <div class="tf-element-carousel section" data-slick-options='{
-                        "slidesToShow": 5,
-                        "slidesToScroll": 1,
-                        "infinite": true,
-                        "arrows": false,
-                        "autoplay": true
-                        }' data-slick-responsive='[
-                        {"breakpoint":1199, "settings": {
-                        "slidesToShow": 4
-                        }},
-                        {"breakpoint":992, "settings": {
-                        "slidesToShow": 4
-                        }},
-                        {"breakpoint":768, "settings": {
-                        "slidesToShow": 3
-                        }},
-                        {"breakpoint":576, "settings": {
-                        "slidesToShow": 1
-                        }}
-                        ]'>
-                        <div class="brand col"><a href="#"><img srcView/layout/assets/images/brands/brand-1.png" alt=""></a>
-                        </div>
-                        <div class="brand col"><a href="#"><img srcView/layout/assets/images/brands/brand-2.png" alt=""></a>
-                        </div>
-                        <div class="brand col"><a href="#"><img srcView/layout/assets/images/brands/brand-3.png" alt=""></a>
-                        </div>
-                        <div class="brand col"><a href="#"><img srcView/layout/assets/images/brands/brand-4.png" alt=""></a>
-                        </div>
-                        <div class="brand col"><a href="#"><img srcView/layout/assets/images/brands/brand-5.png" alt=""></a>
-                        </div>
-                    </div>
-                    <!--Brand Slider end-->
-                </div>
-            </div>
-        </div>
+            
         <!--Brand section end-->
 
         <footer class="footer-section section bg-dark">
@@ -397,7 +358,7 @@
                                 </li>
                             </ul>
                             <div class="payment-box mt-15 mb-15">
-                                <a href="#"><img srcView/layout/assets/images/payment.png" alt=""></a>
+                                <a href="#"><img src="" alt=""></a>
                             </div>
                         </div>
                         <!--Footer Widget end-->
@@ -417,7 +378,7 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-4">
                             <div class="footer-logo text-right">
-                                <a href="index.html"><img src="View/layout/assets/images/logofoo.png" alt=""></a>
+                                <a href="index.php"><img src="View/layout/assets/images/logofoo.png" alt=""></a>
                             </div>
                         </div>
                     </div>
