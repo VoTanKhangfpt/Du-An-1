@@ -31,6 +31,7 @@
   <link rel="stylesheet" href="View/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="View/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="View/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <link rel="stylesheet" href="View/css/style.css">
 
 </head>
 
@@ -41,7 +42,7 @@
   <!-- Left navbar links -->
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      <a class="nav-link" data-widget="pushmenu" href="" role="button"><i class="fas fa-bars"></i></a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
       <a href="index.php" class="nav-link">Home</a>
@@ -250,7 +251,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="index.php?page=product" class="nav-link">
+          <a href="index.php?mod=product" class="nav-link">
             <i class="nav-icon fa-solid fa-folder-plus"></i>
             <p>
               Quản lí sản phẩm
@@ -390,7 +391,7 @@
 
 </body>
 
-<script src="View/layout/assets/js/vendor/jquery-1.12.4.min.js"></script>
+<!-- <script src="View/layout/assets/js/vendor/jquery-1.12.4.min.js"></script> -->
 <script src="View/layout/assets/js/popper.min.js"></script>
 <script src="View/layout/assets/js/bootstrap.min.js"></script>
 <script src="View/layout/assets/js/plugins.js"></script>

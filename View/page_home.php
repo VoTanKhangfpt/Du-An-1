@@ -1,55 +1,4 @@
-<div id="content">
-    <div class="container">
-        <div class="site-content-inner">
-            <div id="primary">
-                <div id="main">
 
-                    <aside class="widget_homepage_slider-2">
-                        <div class="home-slider">
-                            <div class="row">
-                                <div class="row-1">
-                                    <div class="mySlides fade">
-                                        <a href="#"><img src="Template/img/slideshow/slideshow_3.jpg"></a>
-                                    </div>
-                                    <div class="mySlides fade" style="display: none;">
-                                        <a href="#"><img src="Template/img/slideshow/slideshow_4.jpg"></a>
-                                    </div>
-                                    <div class="mySlides fade" style="display: none;">
-                                        <a href="#"><img src="Template/img/slideshow/slideshow_5.jpg"></a>
-                                    </div>
-                                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-                                </div>
-                                <div class="row-2">
-                                    <div class="row-2.1">
-                                        <a href="#"><img src="Template/img/content-banner/banner-vua1.png" alt=""></a>
-                                    </div>
-
-                                    <div class="row-2.2">
-                                        <a href="#"><img src="Template/img/content-banner/banner-vua2.png" alt=""></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="home-slider">
-                            <div class="row">
-                                <a href="#"><img src="Template/img/content-banner/banner-row2-1.png" alt=""></a>
-                                <a href="#"><img src="Template/img/content-banner/banner-row2-2.png" alt=""></a>
-                                <a href="#"><img src="Template/img/content-banner/banner-row2-3.png" alt=""></a>
-                            </div>
-                        </div>
-                    </aside>
-
-                    <aside class="widget_display_static_block-2">
-                        <div class="item-1">
-                            <a href="#"><img src="Template/img/content-banner/qc-1.png" alt=""></a>
-                            <a href="#"><img src="Template/img/content-banner/qc-2.png" alt=""></a>
-                            <a href="#"><img src="Template/img/content-banner/qc-3.png" alt=""></a>
-                            <a href="#"><img src="Template/img/content-banner/qc-4.png" alt=""></a>
-                        </div>
-                    </aside>
 
                     <aside class="widget_gearvn_brands">
                         <div class="brands">
@@ -80,6 +29,28 @@
                                         <div class="brands-item"><a href="#"><img src="Template/img/brands/LenovoLogo-282x152-02.png" alt=""></a>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                    <aside class="widget_gearvn_brands">
+                        <div class="brands">
+                            <div class="brands-header">
+                                <h3>Danh mục sản phẩm</h3>
+                            </div>
+                            <div class="brands-body">
+                                <div class="brands-items">
+                                    <div class="brands-row d-flex justify-content-center">
+                                        <div class="brands-item">
+                                            <a href="#">
+                                                <img src="Template/img/brands/Intel-1.png" alt="">
+                                            </a>
+                                        </div>
+                                        
+                                        
+                                    </div>
+
+                                    
                                 </div>
                             </div>
                         </div>

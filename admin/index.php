@@ -10,6 +10,6 @@
     if(file_exists($path)){
        require_once $path;    
     } else {
-        header('Location: index.php?mod=page&&act=dashboard');
+        header('Location: index.php?mod=page&act=dashboard');
     }
 ?>

@@ -21,9 +21,9 @@
     <section class="content">
         <div class="container-fluid">
             <div class="d-flex justify-content-end">
-                <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#modal-default">
+                <a  href="index.php?mod=category&&act=add" class="btn btn-primary mb-2">
                     Thêm danh mục
-                </button>
+                </a>
             </div>
             <div class="row">
                 <div class="col-12">
@@ -57,11 +57,11 @@
                                 <tr>
                                   <td><?=$i?></td>
                                   <td><?=$tendm?></td>
-                                  <td><img src="<?=$anh?>" alt=""></td>
-                                  <td style="text-align: center;">50</td>
+                                  <td><img src="../uploads/images/<?=$anh?>" alt=""></td>
+                                  <td style="text-align: center;"><?=$soluongsp?></td>
                                   <td align="center">
-                                        <a href="" class="btn btn-primary">Sửa</a>
-                                        <a href="" class="btn btn-danger">Xóa</a>
+                                        <a href="index.php?mod=category&act=edit&id=<?=$id?>" class="btn btn-primary">Sửa</a>
+                                        <a href="?mod=category&act=delete&id=<?=$id?>" class="btn btn-danger">Xóa</a>
                                     </td>
                                   
                                 </tr>
@@ -99,9 +99,9 @@
 </div>
 <!-- /.content-wrapper -->
 
-<div class="modal fade" id="modal-default">
-    <div class="modal-dialog">
-        <div class="modal-content">
+<!-- <div class="modal fade" id="modal-default">
+    <div class="modal-dialog"> -->
+        <!-- <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Thêm thành viên mới</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -134,8 +134,8 @@
                 </div>
             </form>
 
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
+        </div> -->
+        <!-- /.modal-content (có sẵn)-->
+    <!-- </div> -->
+    <!-- /.modal-dialog  (có sẵn)-->
+<!-- </div> -->

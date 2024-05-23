@@ -447,7 +447,7 @@ body {
 
 .widget_homepage_slider-2 .home-slider .row .row-2 {
   /* display: flexbox; */
-  width: 37.5%;
+  width: 23.5%;
 }
 
 .widget_homepage_slider-2 .home-slider .row img {
@@ -455,7 +455,7 @@ body {
 }
 
 .home-slider .row .row-1 img {
-  width: 710px;
+  width: 99%;
   height: auto;
 }
 
@@ -1259,3 +1259,6 @@ body {
 a.ttname {
   text-align: left;
 }
+
+
+
