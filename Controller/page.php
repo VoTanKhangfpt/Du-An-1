@@ -6,6 +6,9 @@ include_once 'Model/DAO/product.php';
 //include_once 'Model/cart.php';
 if ($_GET['act']) {
     switch ($_GET['act']) {
+        case "itel": 
+            $viewName = 'page_iTel';
+            break;
         case 'home':
             if (isset($_SESSION['user'])) {
 

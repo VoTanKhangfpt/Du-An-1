@@ -1,5 +1,3 @@
-
-
                     <aside class="widget_gearvn_brands">
                         <div class="brands">
                             <div class="brands-header">
@@ -8,7 +6,7 @@
                             <div class="brands-body">
                                 <div class="brands-items">
                                     <div class="brands-row">
-                                        <div class="brands-item"><a href="#"><img src="Template/img/brands/Intel-1.png" alt=""></a></div>
+                                        <div class="brands-item"><a href="?mod=page&act=itel"><img src="Template/img/brands/Intel-1.png" alt=""></a></div>
                                         <div class="brands-item"><a href="#"><img src="Template/img/brands/acer.png" alt=""></a></div>
                                         <div class="brands-item"><a href="#"><img src="Template/img/brands/amd.png" alt=""></a></div>
                                         <div class="brands-item"><a href="#"><img src="Template/img/brands/asus.png" alt=""></a></div>

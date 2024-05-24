@@ -24,7 +24,10 @@
         pdo_execute($sql);
     }
 
-
+    function getItel() {
+        $sql = "SELECT san_pham.hinh, san_pham.ten, san_pham.gia  FROM san_pham INNER JOIN nha_sx ON san_pham.id_nhasx = nha_sx.id WHERE nha_sx.id = 12";
+        return pdo_query($sql);
+    }
 
     
 
