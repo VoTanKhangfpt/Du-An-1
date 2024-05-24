@@ -10,3 +10,4 @@ if (file_exists($path) & isset($_GET['act'])) {
     header("location:?mod=page&act=home");
 }
 echo "huynh gia bao" ;
+echo "vo tan khang";
