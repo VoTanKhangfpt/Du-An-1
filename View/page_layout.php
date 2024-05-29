@@ -8,7 +8,10 @@
     <title>Trang chủ</title>
     <link rel="stylesheet" href="Template/css/style.css">
     <link rel="stylesheet" href="Template/css/loaisanpham.css">
+    
     <link rel="stylesheet" href="Template/css/sanphamchitiet.css">
+    <link rel="stylesheet" href="Template/css/dangnhap.css">
+    <link rel="stylesheet" href="Template/css/dangky.css">
     <link href="fontawesome-free-5.15.4-web/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -28,8 +31,7 @@
             <header id="mast-head">
                 <div class="container">
                     <div id="primary">
-                        <svg width="100%" height="25px">
-                        </svg>
+                        
                         <div class="mast-head">
                             <div class="header-logo-area">
                                 <div class="header-site-branding">
@@ -107,153 +109,59 @@
                                 </div>
                             </form>
                             <div class="header-icons">
-                                <div class="header-icon">
-                                    <aside>
-                                        <i class="far fa-user"></i>
-                                        <span>Đăng nhập / Đăng ký
-                                            <br>Tài khoản
-                                            <i class="fas fa-caret-down"></i></span>
-                                    </aside>
-
-                                    <div class="popup-navbar-account">
-                                        <a href="dangnhap.html">Đăng nhập</a>
-                                        <a href="dangky.html">Tạo tài khoản</a>
-                                        <aside id="login-facebook">
-                                            <div class="nsl-container-block"><a href="#" class="btn-facebook"><img src="https://beta.gearvn.com/wp-content/themes/gearvn-electro-child-v1/assets/images/facebook.png" alt="">
-                                                    <strong>Đăng nhập bằng Facebook</strong></a></div>
+                                <?php if (!isset($_SESSION["user"]['ten'])) : ?>
+                                    <div class="header-icon">
+                                        <aside>
+                                            <i class="far fa-user"></i>
+                                            <span>Đăng nhập / Đăng ký
+                                                <br>Tài khoản
+                                                <i class="fas fa-caret-down"></i>
+                                            </span>
                                         </aside>
 
-                                        <aside id="login-google">
-                                            <div class="nsl-container-block"><a href="#" class="btn-google"><img src="https://beta.gearvn.com/wp-content/themes/gearvn-electro-child-v1/assets/images/google.png" alt="">
-                                                    <strong>Đăng nhập bằng Google</strong></a></div>
-                                        </aside>
+                                        <div class="popup-navbar-account">
+                                            <a href="?mod=user&act=dangnhap">Đăng nhập</a>
+                                            <a href="?mod=user&act=dangky">Đăng ký</a>
+                                        </div>
                                     </div>
-                                </div>
+                                <?php else : ?>
+                                    <div class="header-icon">
+                                        <aside>
+                                            <i class="far fa-user"></i>
+                                            <span>
+                                                
+                                                <?= $_SESSION['user']['ten'] ?>
+                                            </span>
+                                        </aside>
+
+                                        <div class="popup-navbar-account">
+                                            <a href="#">Thông tin tài khoản</a>
+                                            <a href="?mod=user&act=doimatkhau">Đổi mật khẩu</a>
+                                            <a href="#">Đơn hàng của bạn</a>
+                                            <a href="?mod=user&act=dangxuat">Đăng xuất</a>
+                                        </div>
+                                    </div>
+
+                                <?php endif; ?>
 
                                 <div class="header-icon header-icon__cart">
                                     <aside>
                                         <a href="giohang.html">
                                             <i class="fas fa-shopping-cart"></i>
-                                            <span class="cart-items-count">0</span>
-                                            <span class="cart-title">Giỏ hàng</span>
+
                                         </a>
+                                        <span class="cart-items-count">0</span>
+                                        <span class="cart-title">Giỏ hàng</span>
                                     </aside>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="electro-navbar">
-                        <div class="container">
-                            <div class="electro-navbar-inner">
-                                <div class="departments-menu-v2">
-                                    <a href="#" class="departments-menu-v2-title">
-                                        <span><i class="fas fa-bars"></i>Danh mục sản phẩm</span>
-                                    </a>
 
-                                    <ul id="menu-main-danh-muc-san-pham" class="dropdown-menu">
-                                        <li><a href="loaisanpham.html"><i class="fas fa-laptop"></i>Laptop
-                                                Gaming</i></a></li>
-                                        <li><a href="loaisanpham.html"><i class="fas fa-laptop-code"></i>Laptop văn
-                                                phòng</a></li>
-                                        <li><a href="loaisanpham.html"><i class="fab fa-apple"></i>Apple</a></li>
-                                        <li><a href="loaisanpham.html"><i class="fas fa-desktop"></i>PC Gaming</a></li>
-                                        <li><a href="loaisanpham.html"><i class="fas fa-server"></i>PC - Máy bộ
-                                                GEARVN</a></li>
-                                        <li><a href="loaisanpham.html"><i class="fas fa-tv"></i>Màn hình</a></li>
-                                        <li><a href="loaisanpham.html"><i class="fas fa-microchip"></i>Main - CPU -
-                                                VGA</a></li>
-                                        <li><a href="loaisanpham.html"><i class="fas fa-battery-three-quarters"></i>Case
-                                                - Tản - Nguồn</a></li>
-                                        <li><a href="loaisanpham.html"><i class="fas fa-memory"></i>SSD - HDD - RAM</a>
-                                        </li>
-                                        <li><a href="loaisanpham.html"><i class="fas fa-keyboard"></i>Bàn phím</a></li>
-                                        <li><a href="loaisanpham.html"><i class="fas fa-mouse"></i>Chuột</a></li>
-                                        <li><a href="loaisanpham.html"><i class="fas fa-headphones"></i>Tai nghe -
-                                                Loa</a></li>
-                                        <li><a href="loaisanpham.html"><i class="fas fa-print"></i>Máy in, phần mềm</a>
-                                        </li>
-                                        <li><a href="loaisanpham.html"><i class="fas fa-chair"></i>Ghế & bàn</a></li>
-                                        <li><a href="loaisanpham.html"><i class="fas fa-wifi"></i>Thiết bị mạng</a></li>
-                                        <li><a href="loaisanpham.html"><i class="fab fa-usb"></i>Phụ kiện</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="primary-nav-menu">
-                                <ul class="nav-inline">
-                                    <li class="menu-item"><a href="#"><i class="fas fa-credit-card"></i>Hướng dẫn thanh
-                                            toán</a></li>
-                                    <li class="menu-item"><a href="#"><i class="fas fa-money-check-alt"></i>Hướng dẫn
-                                            trả
-                                            góp</a></li>
-                                    <li class="menu-item"><a href="#"><i class="fas fa-shipping-fast"></i>Chính sách
-                                            giao
-                                            hàng</a></li>
-                                    <li class="menu-item"><a href="#"><i class="fas fa-shield-alt"></i>Chính sách bảo
-                                            hành</a></li>
-                                    <li class="menu-item"><a href="sanphamkhuyenmai.html"><i class="fas fa-tag"></i>Tổng
-                                            hợp khuyến
-                                            mãi</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </header>
-            <div id="content">
-    <div class="container">
-        <div class="site-content-inner">
-            <div id="primary">
-                <div id="main">
 
-                    <aside class="widget_homepage_slider-2">
-                        <div class="home-slider">
-                            <div class="row d-flex">
-                                <div class="row-1 m-0 p-0">
-                                    <div class="mySlides fade">
-                                        <a href="#"><img src="Template/img/slideshow/slideshow_3.jpg"></a>
-                                    </div>
-                                    <div class="mySlides fade" style="display: none;">
-                                        <a href="#"><img src="Template/img/slideshow/slideshow_4.jpg"></a>
-                                    </div>
-                                    <div class="mySlides fade" style="display: none;">
-                                        <a href="#"><img src="Template/img/slideshow/slideshow_5.jpg"></a>
-                                    </div>
-                                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-                                </div>
-                                <div class="row-2 m-0 p-0">
-                                    <div class="row-2.1">
-                                        <a href="#"><img src="Template/img/content-banner/banner-vua1.png" alt=""></a>
-                                    </div>
-
-                                    <div class="row-2.2">
-                                        <a href="#"><img src="Template/img/content-banner/banner-vua2.png" alt=""></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="home-slider">
-                            <div class="row ">
-                             <a href="#" class="col-3 p-0"><img src="Template/img/content-banner/banner-row2-1.png" alt=""></a>
-                                <a href="#" class="col-3 p-0"><img src="Template/img/content-banner/banner-row2-2.png" alt=""></a>
-                                <a href="#" class="col-3 p-0"><img src="Template/img/content-banner/banner-row2-3.png" alt=""></a>
-                                
-                            </div>
-                        </div>
-                    </aside>
-
-                    <aside class="widget_display_static_block-2">
-                        <div class="item-1">
-                            <a href="#"><img src="Template/img/content-banner/qc-1.png" alt=""></a>
-                            <a href="#"><img src="Template/img/content-banner/qc-2.png" alt=""></a>
-                            <a href="#"><img src="Template/img/content-banner/qc-3.png" alt=""></a>
-                            <a href="#"><img src="Template/img/content-banner/qc-4.png" alt=""></a>
-                        </div>
-                    </aside>
 
             <!-- content -->
             <?php include_once 'View/' . $viewName . '.php'; ?>
@@ -277,7 +185,7 @@
                                                 <input type="text" placeholder="Email của bạn...">
                                             </div>
                                             <div class="input-group-btn">
-                                                <button type="submit"></i>Đăng ký</button>
+                                                <button class="btn btn-danger p-0" type="submit"></i>Đăng ký</button>
                                             </div>
                                         </div>
 
@@ -474,6 +382,8 @@
             header.style.display = 'block';
         }
     }
+
+    var btn
 </script>
 
 </html>

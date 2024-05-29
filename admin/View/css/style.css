@@ -1,3 +1,11 @@
 .btn{
     cursor: pointer;
 }
+
+.mystyle{
+    display: none;
+}
+
+.mystyle2{
+    margin-left: 0px !important;
+}

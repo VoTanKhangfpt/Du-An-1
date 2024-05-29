@@ -1,4 +1,5 @@
-<?php if (is_array($item) && count($item) > 0) {
+<?php
+if (is_array($item) && count($item) > 0) {
     extract($item);
 }
 
@@ -15,7 +16,7 @@
                 <div class="product-images-wrapper">
                     <div class="woocommerce-product-gallery">
                         <div class="woocommerce-product-gallery__image">
-                            <a href="#"><img src="Template/img/sanphamchitiet/gearvn-laptop-gaming-acer-predator-helios-300-ph315-54-75yd-1s.png" alt=""></a>
+                            <a href="#"><img src="<?=$hinh?>" alt=""></a>
                         </div>
                     </div>
                     <div class="product-thumbs-slide">
@@ -73,7 +74,7 @@
 
             <div class="product-contents">
                 <div class="text-detail">
-                    <div class="electro-description clearfix show-more-content">
+                    <!-- <div class="electro-description clearfix show-more-content">
                         <h2>Đánh giá chi tiết laptop gaming Acer Predator Helios 300 PH315 54 75YD</h2>
                         <h3><strong>Sức mạnh đến từ NVIDIA GeForce RTX 3060</strong></h3>
                         <p>RTX 3060 sẽ mang lại hiệu suất tối ưu cho game thủ và creator. Chiếc card màn hình được
@@ -81,7 +82,7 @@
                             mới, Lõi Tensor và khả năng streaming với bộ xử lý multiprocessor để có một bước nhảy
                             vọt về hiệu năng. Acer Predator Helios 300 trang bị Công nghệ NVIDIA ® Max-Q 1 cho hiệu
                             suất và hiệu suất cao nhất.</p>
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/Xu4QtzRZh34" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        
                         <h3><strong>Khả năng xử lý mạnh mẽ với Intel Gen 11</strong></h3>
                         <p>Ẩn sâu trong con quái vật Acer Predator Helios 300 là chiếc CPU Intel i7 Gen 11 với mã –
                             11800H. Kết hợp cùng 16GB RAM, Acer Predator Helios 300 PH315 54 75YD mang lại khả năng
@@ -125,38 +126,13 @@
                         <p>Công nghệ âm thanh DTS:X Ultra trên Acer Predator Helios 300 đem đến trải nghiệm thính
                             giác tuyệt vời trong các tựa game, bài hát, bộ phim.</p>
                         <p><img class="aligncenter wp-image-68210 size-large" src="https://gstatic.gearvn.com/2021/10/gearvn-laptop-gaming-acer-predator-helios-300-ph315-54-75yd-9-1024x569.jpg" alt="GEARVN.COM - Laptop Gaming Acer Predator Helios 300 PH315 54 75YD" width="1024" height="569" sizes="(max-width: 1024px) 100vw, 1024px"></p>
-                    </div>
+                    </div> -->
                 </div>
 
 
             </div>
 
-            <div class="product-right-content">
-                <div class="tableparameter">
-                    <h3>Thông số kỹ thuật</h3>
-                    <ul>
-                        <?php if (is_array($nhaxs) && count($nhaxs) > 0) : {
 
-                        ?>
-                                <li><span class="label">Thương hiệu:</span><span class="value"><?= $nhaxs['ten'] ?></span></li>
-                        <?php }
-                        endif; ?>
-                        <li><span class="label">Thông tin pin:</span><span class="value"><?= $thong_tin_pin ?></span></li>
-                        <li><span class="label">Màn hình:</span><span class="value"><?= $man_hinh ?></span></li>
-                        <li><span class="label">CPU:</span><span class="value">
-                                <p><?= $cpu ?></p>
-                            </span></li>
-                        <li><span class="label">RAM:</span><span class="value">
-                                <p><?= $ram ?></p>
-                            </span></li>
-                        <li><span class="label">Ổ lưu trữ:</span><span class="value">512GB SSD M.2 PCIE (nâng
-                                cấp tối đa 2TB SSD PCIe NVMe và 2TB HDD 2.5-inch 5400 RPM)</span></li>
-                        <li><span class="label">Card đồ họa:</span><span class="value">NVIDIA® GeForce RTX™ 3060
-                                6GB GDDR6</span></li>
-                        <li><span class="label">Công nghệ màn hình:</span><span class="value"><?= $cong_nghe_man_hinh ?></span></li>
-                    </ul>
-                </div>
-            </div>
         </div>
 
         <!-- --Begin-rating-- -->
@@ -260,83 +236,46 @@
 
         <div class="site-content-inner row-product-same">
             <h2>Sản phẩm tương tự</h2>
+
+
             <div class="products-same flex-row">
-                <div class="product-same-detail">
-                    <div class="product-detail-img">
-                        <img src="Template/img/product/noibat/noibat1-1.jpg" alt="">
-                    </div>
-                    <div class="product-detail-content">
-                        <div class="product-detail-title">
-                            <h3><a href="">Laptop ASUS Vivobook 14 OLED A1405VA KM095W</a></h3>
+                <?php
+                if (is_array($random) && count($random) > 0) :
+
+                    foreach ($random as $pro) :
+
+                ?>
+                        <div class="product-same-detail">
+                            <a href="?mod=page&act=detail&id=<?= $pro['id'] ?>">
+                                <div class="product-detail-img">
+
+                                    <img src="<?= $pro['hinh'] ?>" alt="">
+                                </div>
+                            </a>
+
+                            <div class="product-detail-content">
+                                <div class="product-detail-title">
+                                    <h3><a href="?mod=page&act=detail&id=<?= $pro['id'] ?>"><?= $pro['ten'] ?></a></h3>
+                                </div>
+                                <div class="product-detail-price">
+                                    <p class="price-old"><del>Giá gốc: <?= number_format($pro['gia'], 0, ",", ",") ?> <sup>đ</sup></del></p>
+                                    <p class="price-new">Giá khuyến mãi: <?= number_format($pro['gia_km'], 0, ",", ".") ?> <sup>đ</sup> </p>
+                                    <!-- <span>-15%</span> -->
+                                </div>
+                                <div class="product-detail-rating">
+                                    <span class="rating-number">4.0</span>
+                                    <span class="rating-star"><i class="fa-solid fa-star"></i></span>
+                                    <span class="rating-count">(0 đánh giá)</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="product-detail-price">
-                            <p class="price-old"><del>20.990.000 <sup>đ</sup></del></p>
-                            <p class="price-new">17.790.000 <sup>đ</sup> <span>-15%</span></p>
-                        </div>
-                        <div class="product-detail-rating">
-                            <span class="rating-number">4.0</span>
-                            <span class="rating-star"><i class="fa-solid fa-star"></i></span>
-                            <span class="rating-count">(1 đánh giá)</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-same-detail">
-                    <div class="product-detail-img">
-                        <img src="Template/img/product/noibat/noibat1-1.jpg" alt="">
-                    </div>
-                    <div class="product-detail-content">
-                        <div class="product-detail-title">
-                            <h3><a href="">Laptop ASUS Vivobook 14 OLED A1405VA KM095W</a></h3>
-                        </div>
-                        <div class="product-detail-price">
-                            <p class="price-old"><del>20.990.000 <sup>đ</sup></del></p>
-                            <p class="price-new">17.790.000 <sup>đ</sup> <span>-15%</span></p>
-                        </div>
-                        <div class="product-detail-rating">
-                            <span class="rating-number">4.0</span>
-                            <span class="rating-star"><i class="fa-solid fa-star"></i></span>
-                            <span class="rating-count">(1 đánh giá)</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-same-detail">
-                    <div class="product-detail-img">
-                        <img src="Template/img/product/noibat/noibat1-1.jpg" alt="">
-                    </div>
-                    <div class="product-detail-content">
-                        <div class="product-detail-title">
-                            <h3><a href="">Laptop ASUS Vivobook 14 OLED A1405VA KM095W</a></h3>
-                        </div>
-                        <div class="product-detail-price">
-                            <p class="price-old"><del>20.990.000 <sup>đ</sup></del></p>
-                            <p class="price-new">17.790.000 <sup>đ</sup> <span>-15%</span></p>
-                        </div>
-                        <div class="product-detail-rating">
-                            <span class="rating-number">4.0</span>
-                            <span class="rating-star"><i class="fa-solid fa-star"></i></span>
-                            <span class="rating-count">(1 đánh giá)</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-same-detail">
-                    <div class="product-detail-img">
-                        <img src="Template/img/product/noibat/noibat1-1.jpg" alt="">
-                    </div>
-                    <div class="product-detail-content">
-                        <div class="product-detail-title">
-                            <h3><a href="">Laptop ASUS Vivobook 14 OLED A1405VA KM095W</a></h3>
-                        </div>
-                        <div class="product-detail-price">
-                            <p class="price-old"><del>20.990.000 <sup>đ</sup></del></p>
-                            <p class="price-new">17.790.000 <sup>đ</sup> <span>-15%</span></p>
-                        </div>
-                        <div class="product-detail-rating">
-                            <span class="rating-number">4.0</span>
-                            <span class="rating-star"><i class="fa-solid fa-star"></i></span>
-                            <span class="rating-count">(1 đánh giá)</span>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                    endforeach;
+                endif;
+                ?>
+
+
+
             </div>
         </div>
     </div>

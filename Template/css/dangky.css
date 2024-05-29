@@ -1,11 +1,15 @@
-.action_bottom{
+.action_bottom {
     display: inline-block;
 }
 
-.back{
+.back {
     background: #ccc;
 }
 
-.mr{
+.mr {
     margin-right: 10px;
+}
+
+.btn-signin {
+    text-decoration: none;
 }

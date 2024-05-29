@@ -1,11 +1,7 @@
 <?php
 require_once 'pdo.php';
 
-function get_product_thuoctinh_ByID($id)
-{
-    $sql = "SELECT san_pham.id, san_pham.id_nhasx, san_pham.iddm, san_pham.id_thuoctinh, san_pham.ten, san_pham.gia, san_pham.gia_km, san_pham.hinh, san_pham.mau_sac, thuoc_tinh.ram, thuoc_tinh.cpu, thuoc_tinh.dia, thuoc_tinh.man_hinh, thuoc_tinh.thong_tin_pin, thuoc_tinh.cong_nghe_man_hinh, thuoc_tinh.cong_nghe_man_hinh FROM `san_pham` INNER JOIN thuoc_tinh ON san_pham.id_thuoctinh = thuoc_tinh.id WHERE san_pham.id = $id GROUP BY san_pham.id;";
-    return pdo_query_one($sql);
-}
+
 
 function get_product_nhaxs($id)
 {
@@ -13,9 +9,20 @@ function get_product_nhaxs($id)
     return pdo_query_one($sql);
 }
 
+function get_product_danhmuc($iddm)
+{
+    $sql = "SELECT * FROM `san_pham` WHERE san_pham.iddm = $iddm";
+    return pdo_query($sql);
+}
+
 function getAllProduct($num)
 {
     $sql = "SELECT * FROM `san_pham` limit $num";
+    return pdo_query($sql);
+}
+
+function getProduct_hot($num){
+    $sql = "SELECT * FROM `san_pham` WHERE hot=1 limit $num";
     return pdo_query($sql);
 }
 
@@ -25,11 +32,25 @@ function getById_product($id)
     return pdo_query_one($sql);
 }
 
+function getRandom_product($id, $iddm, $soluong)
+{
+    $sql = "SELECT * FROM san_pham WHERE san_pham.iddm = $iddm AND san_pham.id != $id ORDER BY RAND() limit $soluong";
+    return pdo_query($sql);
+}
+
 function getAll_product_dm_nhasx()
 {
     $sql = "SELECT sp.id, sp.ten as tensp, sp.gia, sp.gia_km, sp.hinh, sp.soluong, sp.an_hien, sp.hot, dm.tendm, nsx.ten FROM `san_pham` as sp INNER JOIN danhmuc as dm ON sp.iddm=dm.id INNER JOIN nha_sx as nsx ON sp.id_nhasx=nsx.id GROUP BY sp.id";
     return pdo_query($sql);
 }
+
+// Hiện tất cả sản phẩm theo danhmuc
+function getAll_product_dm()
+{
+    
+}
+
+
 
 
 function create_product($ten, $gia, $gia_km, $hot, $mota, $anhien, $iddm, $id_nhasx, $can_nang, $mau_sac, $hinh)

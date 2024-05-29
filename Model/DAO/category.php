@@ -16,8 +16,12 @@
     }
 
     function update_category($tendm, $anhien, $img, $id){
-        $sql = "UPDATE danhmuc SET tendm = ?, anhien = ?, anh = ? WHERE id = $id";
-        pdo_execute($sql, $tendm, $anhien, $img);
+        if($img!==''){
+            $sql = "UPDATE danhmuc SET tendm = '$tendm', anhien = $anhien, anh = '$img' WHERE id = $id";
+        }else{
+            $sql = "UPDATE danhmuc SET tendm = '$tendm', anhien = $anhien WHERE id = $id";
+        }
+        pdo_execute($sql);
     }
     function delete_category($id){
         $sql = "DELETE FROM danhmuc WHERE id = $id";

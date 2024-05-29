@@ -1,3 +1,10 @@
+<?php
+    if (isset($thongbao)&&$thongbao!==''){
+        echo "<script>
+            alert('".$thongbao."');   
+        </script>";
+    }
+?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
