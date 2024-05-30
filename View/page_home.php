@@ -1,3 +1,90 @@
+<div id="content">
+    <div class="container">
+        <div class="site-content-inner">
+            <div id="primary">
+                <div id="main">
+
+                    <aside class="widget_homepage_slider-2">
+                        <div class="home-slider">
+                            <div class="row d-flex">
+                                <div class="row-1 m-0 p-0">
+                                    <div class="mySlides fade">
+                                        <a href="#"><img src="Template/img/slideshow/slideshow_3.jpg"></a>
+                                    </div>
+                                    <div class="mySlides fade" style="display: none;">
+                                        <a href="#"><img src="Template/img/slideshow/slideshow_4.jpg"></a>
+                                    </div>
+                                    <div class="mySlides fade" style="display: none;">
+                                        <a href="#"><img src="Template/img/slideshow/slideshow_5.jpg"></a>
+                                    </div>
+                                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                                </div>
+                                <div class="row-2 m-0 p-0">
+                                    <div class="row-2.1">
+                                        <a href="#"><img src="Template/img/content-banner/banner-vua1.png" alt=""></a>
+                                    </div>
+
+                                    <div class="row-2.2">
+                                        <a href="#"><img src="Template/img/content-banner/banner-vua2.png" alt=""></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="home-slider">
+                            <div class="row ">
+                             <a href="#" class="col-3 p-0"><img src="Template/img/content-banner/banner-row2-1.png" alt=""></a>
+                                <a href="#" class="col-3 p-0"><img src="Template/img/content-banner/banner-row2-2.png" alt=""></a>
+                                <a href="#" class="col-3 p-0"><img src="Template/img/content-banner/banner-row2-3.png" alt=""></a>
+
+                            </div>
+                        </div>
+                    </aside>
+
+                    <aside class="widget_display_static_block-2">
+                        <div class="item-1">
+                            <a href="#"><img src="Template/img/content-banner/qc-1.png" alt=""></a>
+                            <a href="#"><img src="Template/img/content-banner/qc-2.png" alt=""></a>
+                            <a href="#"><img src="Template/img/content-banner/qc-3.png" alt=""></a>
+                            <a href="#"><img src="Template/img/content-banner/qc-4.png" alt=""></a>
+                        </div>
+                    </aside>
+
+<aside class="widget_gearvn_brands">
+    <div class="brands">
+        <div class="brands-header">
+            <h3>Thương hiệu sản phẩm</h3>
+        </div>
+        <div class="brands-body">
+            <div class="brands-items">
+                <div class="brands-row">
+                    <div class="brands-item"><a href="#"><img src="Template/img/brands/Intel-1.png" alt=""></a></div>
+                    <div class="brands-item"><a href="#"><img src="Template/img/brands/acer.png" alt=""></a></div>
+                    <div class="brands-item"><a href="#"><img src="Template/img/brands/amd.png" alt=""></a></div>
+                    <div class="brands-item"><a href="#"><img src="Template/img/brands/asus.png" alt=""></a></div>
+                    <div class="brands-item"><a href="#"><img src="Template/img/brands/gigabyte.png" alt=""></a></div>
+                    <div class="brands-item"><a href="#"><img src="Template/img/brands/logitech.png" alt=""></a></div>
+                    <div class="brands-item"><a href="#"><img src="Template/img/brands/nvidia.jpg" alt=""></a></div>
+                    <div class="brands-item"><a href="#"><img src="Template/img/brands/msi.png" alt=""></a></div>
+                </div>
+
+                <div class="brands-row">
+                    <div class="brands-item"><a href="#"><img src="Template/img/brands/apple.png" alt=""></a></div>
+                    <div class="brands-item"><a href="#"><img src="Template/img/brands/lg.png" alt=""></a></div>
+                    <div class="brands-item"><a href="#"><img src="Template/img/brands/samsung.png" alt=""></a></div>
+                    <div class="brands-item"><a href="#"><img src="Template/img/brands/Kington.png" alt=""></a></div>
+                    <div class="brands-item"><a href="#"><img src="Template/img/brands/Corsair-1.png" alt=""></a></div>
+                    <div class="brands-item"><a href="#"><img src="Template/img/brands/razer.png" alt=""></a></div>
+                    <div class="brands-item"><a href="#"><img src="Template/img/brands/Hyper.png" alt=""></a></div>
+                    <div class="brands-item"><a href="#"><img src="Template/img/brands/LenovoLogo-282x152-02.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>
 <!-- <aside class="widget_gearvn_brands">
     <div class="brands">
         <div class="brands-header">
@@ -33,7 +120,7 @@
             if (is_array($getAllProduct)) {
                 for ($i = 0; $i < count($getAllProduct); $i++) {
             ?>
-                    <a href="?mod=page&act=detail&id=<?= $getAllProduct[$i]['id'] ?>">
+                    <a href="?mod=page&act=detail&id=<?=$getAllProduct[$i]['id']?>">
                         <div class="list-product-item">
                             <div class="list-product-item-img">
                                 <img src="./uploads/images/<?= $getAllProduct[$i]['hinh'] ?>" alt="">
@@ -61,7 +148,7 @@
                 foreach ($getHotProduct as $item) :
                     extract($item);
 
-
+                    
             ?>
                     <a class="qc-first" href="sanphamchitiet.html" style="border: 1px solid #ededed;">
                         <div class="list-product-item">
