@@ -11,6 +11,8 @@ if (file_exists($path) & isset($_GET['act'])) {
 }
 echo 'tuyen';
 echo 'trungtuyen';
+echo 'trungtuyen123';
+
 ?>
 
 
