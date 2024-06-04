@@ -160,138 +160,22 @@
                                             </div>
 
                                             <div class="list-product-body bg-white">
+                                                <?php if(isset($pro_category))
+                                                    {
+                                                        foreach($pro_category as  $pro){
+                                                            extract($pro);
+                                                ?>
                                                 <a href="#" style="border: 1px solid #ededed;">
                                                     <div class="list-product-item">
                                                         <div class="list-product-item-img">
-                                                            <img src="./img/product/toppc-banchay/PC GVN GAREN S.jpg"
+                                                            <img src="uploads/images/<?=$hinh?>"
                                                                 alt="">
                                                         </div>
-                                                        <h2>PC GVN GAREN S</h2>
-                                                        <span>31.690.000 đ</span>
+                                                        <h2><?$ten?></h2>
+                                                        <span><?=number_format($gia,0,",",".")?> VNĐ</span>
                                                     </div>
-                                                </a>
-
-                                                <a href="#" style="border: 1px solid #ededed;">
-                                                    <div class="list-product-item">
-                                                        <div class="list-product-item-img">
-                                                            <img src="./img/product/toppc-banchay/PC GVN IVY M.jpg"
-                                                                alt="">
-                                                        </div>
-                                                        <h2>PC GVN IVY M</h2>
-                                                        <span>42.390.000 đ</span>
-                                                    </div>
-                                                </a>
-
-                                                <a href="#" style="border: 1px solid #ededed;">
-                                                    <div class="list-product-item">
-                                                        <div class="list-product-item-img">
-                                                            <img src="./img/product/toppc-banchay/PC GVN PHANTOM S.jpg"
-                                                                alt="">
-                                                        </div>
-                                                        <h2>PC GVN PHANTOM S</h2>
-                                                        <span>8.190.000 đ</span>
-                                                    </div>
-                                                </a>
-
-                                                <a href="#" style="border: 1px solid #ededed;">
-                                                    <div class="list-product-item">
-                                                        <div class="list-product-item-img">
-                                                            <img src="./img/product/toppc-banchay/PC GVN RATCHET M.jpg"
-                                                                alt="">
-                                                        </div>
-                                                        <h2>PC GVN RATCHET M</h2>
-                                                        <span>12.590.000 đ</span>
-                                                    </div>
-                                                </a>
-
-                                                <a href="#" style="border: 1px solid #ededed;">
-                                                    <div class="list-product-item">
-                                                        <div class="list-product-item-img">
-                                                            <img src="./img/product/toppc-banchay/PC GVN VENTUS M.jpg"
-                                                                alt="">
-                                                        </div>
-                                                        <h2>PC GVN VENTUS M</h2>
-                                                        <span>27.990.000 đ</span>
-                                                    </div>
-                                                </a>
-
-                                                <a href="#" style="border: 1px solid #ededed;">
-                                                    <div class="list-product-item">
-                                                        <div class="list-product-item-img">
-                                                            <img src="./img/product/toppc-banchay/PC GVN VENTUS M.jpg"
-                                                                alt="">
-                                                        </div>
-                                                        <h2>PC GVN VENTUS M</h2>
-                                                        <span>27.990.000 đ</span>
-                                                    </div>
-                                                </a>
-
-                                                <a href="#" style="border: 1px solid #ededed;">
-                                                    <div class="list-product-item">
-                                                        <div class="list-product-item-img">
-                                                            <img src="./img/product/toppc-banchay/PC GVN VENTUS M.jpg"
-                                                                alt="">
-                                                        </div>
-                                                        <h2>PC GVN VENTUS M</h2>
-                                                        <span>27.990.000 đ</span>
-                                                    </div>
-                                                </a>
-
-                                                <a href="#" style="border: 1px solid #ededed;">
-                                                    <div class="list-product-item">
-                                                        <div class="list-product-item-img">
-                                                            <img src="./img/product/toppc-banchay/PC GVN VENTUS M.jpg"
-                                                                alt="">
-                                                        </div>
-                                                        <h2>PC GVN VENTUS M</h2>
-                                                        <span>27.990.000 đ</span>
-                                                    </div>
-                                                </a>
-
-                                                <a href="#" style="border: 1px solid #ededed;">
-                                                    <div class="list-product-item">
-                                                        <div class="list-product-item-img">
-                                                            <img src="./img/product/toppc-banchay/PC GVN VENTUS M.jpg"
-                                                                alt="">
-                                                        </div>
-                                                        <h2>PC GVN VENTUS M</h2>
-                                                        <span>27.990.000 đ</span>
-                                                    </div>
-                                                </a>
-
-                                                <a href="#" style="border: 1px solid #ededed;">
-                                                    <div class="list-product-item">
-                                                        <div class="list-product-item-img">
-                                                            <img src="./img/product/toppc-banchay/PC GVN VENTUS M.jpg"
-                                                                alt="">
-                                                        </div>
-                                                        <h2>PC GVN VENTUS M</h2>
-                                                        <span>27.990.000 đ</span>
-                                                    </div>
-                                                </a>
-
-                                                <a href="#" style="border: 1px solid #ededed;">
-                                                    <div class="list-product-item">
-                                                        <div class="list-product-item-img">
-                                                            <img src="./img/product/toppc-banchay/PC GVN VENTUS M.jpg"
-                                                                alt="">
-                                                        </div>
-                                                        <h2>PC GVN VENTUS M</h2>
-                                                        <span>27.990.000 đ</span>
-                                                    </div>
-                                                </a>
-
-                                                <a href="#" style="border: 1px solid #ededed;">
-                                                    <div class="list-product-item">
-                                                        <div class="list-product-item-img">
-                                                            <img src="./img/product/toppc-banchay/PC GVN VENTUS M.jpg"
-                                                                alt="">
-                                                        </div>
-                                                        <h2>PC GVN VENTUS M</h2>
-                                                        <span>27.990.000 đ</span>
-                                                    </div>
-                                                </a>
-
+                                                </a>                                                
+                                                        <?php }}?>
                                             </div>
                                         </div>
                                     </aside>

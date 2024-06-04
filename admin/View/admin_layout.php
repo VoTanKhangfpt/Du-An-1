@@ -28,6 +28,7 @@
   <!-- summernote -->
   <link rel="stylesheet" href="View/plugins/summernote/summernote-bs4.min.css">
   <script src="https://kit.fontawesome.com/8c204d0fdf.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <link rel="stylesheet" href="View/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="View/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="View/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
@@ -48,7 +49,7 @@
       <a href="index.php" class="nav-link">Home</a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a href="https://www.facebook.com/giangcoder/" class="nav-link">Liên hệ</a>
+      <a href="https://www.facebook.com/profile.php?id=100087825580481" class="nav-link">Liên hệ</a>
     </li>
   </ul>
 
@@ -245,7 +246,7 @@
             <i class="nav-icon fa-solid fa-folder-open"></i>
             <p>
               Quản lí danh mục
-              <span class="badge badge-info right">6</span>
+              <span class="badge badge-info right"></span>
               <!-- <span class="right badge badge-danger">New</span> -->
             </p>
           </a>
@@ -256,17 +257,27 @@
             <p>
               Quản lí sản phẩm
               <!-- <span class="right badge badge-danger">New</span> -->
-              <span class="badge badge-info right">6</span>
+              <span class="badge badge-info right"></span>
             </p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="index.php?page=user" class="nav-link">
+          <a href="index.php?mod=user" class="nav-link">
             <i class="nav-icon fa-solid fa-user"></i>
             <p>
               Quản lí thành viên
               <!-- <i class="fas fa-angle-left right"></i> -->
-              <span class="badge badge-info right">6</span>
+              <span class="badge badge-info right"></span>
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="index.php?mod=comment" class="nav-link">
+            <i class="nav-icon fa-solid fa-comment"></i>
+            <p>
+              Quản lí bình luận
+              <!-- <i class="fas fa-angle-left right"></i> -->
+              <span class="badge badge-info right"></span>
             </p>
           </a>
         </li>
@@ -408,3 +419,13 @@
     content.classList.toggle("mystyle2");
   }
 </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script> -->
+
+<!-- Popper JS -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>

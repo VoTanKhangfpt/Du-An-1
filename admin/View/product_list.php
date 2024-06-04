@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="?mod=page&act=dashboard">Dashboard</a></li>
                         <li class="breadcrumb-item active">Sản phẩm</li>
                     </ol>
                 </div>
@@ -22,7 +22,7 @@
         <div class="container-fluid">
             <div class="d-flex justify-content-end">
                 <a href="?mod=product&act=add" class="btn btn-primary mb-2">
-                    Danh sách sản phẩm
+                    Thêm sản phẩm
                 </a>
             </div>
             <div class="row">

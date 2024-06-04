@@ -16,7 +16,7 @@ if (is_array($item) && count($item) > 0) {
                 <div class="product-images-wrapper">
                     <div class="woocommerce-product-gallery">
                         <div class="woocommerce-product-gallery__image">
-                            <a href="#"><img src="<?=$hinh?>" alt=""></a>
+                            <a href="#"><img src="uploads/images/<?= $hinh ?>" alt=""></a>
                         </div>
                     </div>
                     <div class="product-thumbs-slide">
@@ -168,7 +168,7 @@ if (is_array($item) && count($item) > 0) {
             </div>
         </div> -->
         <div class="card">
-            <div class="card-header">Sample Product</div>
+            <!-- <div class="card-header">Bình luận</div> -->
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-4 text-center">
@@ -232,6 +232,12 @@ if (is_array($item) && count($item) > 0) {
                     </div>
                 </div>
             </div>
+            <div class="card-footer" id="binhluan">
+                
+                    <iframe src="?mod=page&act=comment&idpro=<?= $id ?>" width="100%" height="300px" frameborder="0"></iframe>
+                
+
+            </div>
         </div>
 
         <div class="site-content-inner row-product-same">
@@ -249,7 +255,7 @@ if (is_array($item) && count($item) > 0) {
                             <a href="?mod=page&act=detail&id=<?= $pro['id'] ?>">
                                 <div class="product-detail-img">
 
-                                    <img src="<?= $pro['hinh'] ?>" alt="">
+                                    <img src="uploads/images/<?= $pro['hinh'] ?>" alt="">
                                 </div>
                             </a>
 

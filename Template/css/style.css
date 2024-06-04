@@ -137,7 +137,6 @@ body {
 .gvn-banner-header {
   width: 100%;
   height: 60px;
-  
 }
 
 .owl-stage-outer {
@@ -167,33 +166,10 @@ body {
   flex-wrap: nowrap;
   align-items: center;
   height: 84px;
-  
-  
-  /* right: 0; */
-  /* left: 0; */
-  
 }
-
-#mast-head{
-  position: sticky;
-  /* margin-top: 30px; */
-  top: 0px;
-  height: 0px !important;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  /* margin-bottom: 40px; */
-  height: 60px;
-  z-index: 1;
-  position: -webkit-sticky;
-}
-
-
-
 
 .electro-navbar {
   width: 100%;
-  
 }
 
 .header-logo-area {
@@ -337,7 +313,7 @@ body {
 .primary-nav-menu {
   display: inline-flex;
   flex-wrap: wrap;
-  height: 40px;
+  height: 65px;
   width: calc(80% - 7px);
 }
 
@@ -377,7 +353,6 @@ body {
 
 #content {
   background-color: #efefef;
-  margin-top: 120px;
 }
 
 .site-content-inner {
@@ -853,6 +828,7 @@ body {
   left: 35%;
   transform: translateX(-50%);
   background-color: white;
+  z-index: -1;
   background: #ffffff;
   box-shadow: rgb(0 0 0 / 25%) 0 6px 12px 0;
   border-radius: 4px;
@@ -865,7 +841,7 @@ body {
   transition: all 0.5s;
   opacity: 1;
   top: 40px;
-  z-index: 1;
+  z-index: 999;
 }
 
 .header-icon .popup-navbar-account > a {
@@ -932,7 +908,7 @@ body {
 
 .off-canvas-navigation-wrapper {
   width: 100%;
-  display: none;
+  display: block;
 }
 
 .off-canvas-navigation-wrapper .off-canvas-navbar-toggle-buttons i {
@@ -945,9 +921,11 @@ body {
   width: 100%;
 }
 
-#desktop-small-menu {
-  display: none;
-}
+/* #desktop-small-menu {
+    display: flex;
+   
+  } */
+  
 
 .img-flashsale-responsive {
   display: none;
@@ -969,8 +947,13 @@ body {
 
   .off-canvas-navigation-wrapper {
     width: 100%;
-    display: flex;
-  }
+    display: block;
+}
+
+.off-canvas-navigation-wrapper.show {
+    display: block; 
+}
+
 
   .widget_homepage_slider-2 {
     height: auto;
@@ -1036,7 +1019,7 @@ body {
 
   #desktop-small-menu {
     position: fixed;
-    top: 300px;
+    top: 131px;
     left: -10px;
     width: 100vw;
     /* height: 0; */
@@ -1283,6 +1266,56 @@ body {
 a.ttname {
   text-align: left;
 }
+#desktop-small-menu {
+  position: absolute; /* Hoặc position: fixed nếu bạn muốn menu cố định khi cuộn trang */
+  top: 131px;
+  margin-left: -195px;
+  width: 10%;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  z-index: 1000; /* Số lớn để đảm bảo menu nằm trên banner */
+  display: none; /* Ẩn menu mặc định */
+}
 
+#desktop-small-menu.visible {
+  display: block; /* Hiển thị menu khi thêm class visible */
+}
+
+#desktop-small-menu .navbar-toggle-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+#desktop-small-menu .lst-items {
+  display: flex;
+  flex-direction: column; /* Chuyển sang sắp xếp theo cột */
+  align-items: flex-start; /* Căn trái các mục */
+}
+
+#desktop-small-menu .lst-items a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  width: 100%;
+  padding: 10px 0; /* Khoảng cách trên và dưới */
+  transition: background-color 0.3s;
+  border-bottom: 1px solid #eee; /* Thêm đường viền dưới để phân tách các mục */
+}
+
+#desktop-small-menu .lst-items i {
+  font-size: 24px;
+  margin-right: 10px;
+  color: #007bff;
+}
+
+#desktop-small-menu .lst-items h3 {
+  font-size: 16px;
+  margin: 0;
+}
 
 

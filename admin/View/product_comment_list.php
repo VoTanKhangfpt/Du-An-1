@@ -12,12 +12,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Danh mục</h1>
+                    <h1>Bình luận</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="?mod=page&act=dashboard">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Danh mục</li>
+                        <li class="breadcrumb-item active">Bình luận</li>
                     </ol>
                 </div>
             </div>
@@ -27,11 +27,11 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <div class="d-flex justify-content-end">
+            <!-- <div class="d-flex justify-content-end">
                 <a  href="index.php?mod=category&&act=add" class="btn btn-primary mb-2">
                     Thêm danh mục
                 </a>
-            </div>
+            </div> -->
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -43,10 +43,11 @@
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col" style="text-align: center;">#</th>
-                                        <th scope="col" style="text-align: center;">Tên danh mục</th>
-                                        <th scope="col" style="text-align: center;">Ảnh</th>
-                                        <th scope="col" style="text-align: center;">Số lượng sản phẩm</th>
+                                        <th scope="col" style="text-align: center;">Mã sản phẩm</th>
+                                        <th scope="col" style="text-align: center;">Tên sản phẩm</th>
+                                        <th scope="col" style="text-align: center;">Số lượng bình luận</th>
+                                        <th scope="col" style="text-align: center;">Mới nhất</th>
+                                        <th scope="col" style="text-align: center;">Cũ nhất</th>
                                     
                                         <th scope="col" style="text-align: center;">Thao tác</th>
 
@@ -54,26 +55,27 @@
                                 </thead>
                                 <tbody>
                                 <?php 
-                                $i = 1;
-                                    if(is_array($category_list)){
-                                        foreach ($category_list as $category) {
-                                            extract($category);
+                                
+                                    if(is_array($commnetProduct)){
+                                        foreach ($commnetProduct as $commnet) {
+
+                                            extract($commnet);
                                     
                                         
                                 ?>
                                 <tr>
-                                  <td><?=$i?></td>
-                                  <td><?=$tendm?></td>
-                                  <td><img src="../uploads/images/<?=$anh?>" alt=""></td>
-                                  <td style="text-align: center;"><?=$soluongsp?></td>
-                                  <td align="center">
-                                        <a href="index.php?mod=category&act=edit&id=<?=$id?>" class="btn btn-primary">Sửa</a>
-                                        <a href="?mod=category&act=delete&id=<?=$id?>" class="btn btn-danger">Xóa</a>
+                                  <td><?=$idsp?></td>
+                                  <td><?=$ten?></td>
+                                  <td><?=$so_luong?></td>
+                                  <td><?=$moi_nhat?></td>
+                                  <td><?=$cu_nhat?></td>
+                                  <td align="center">                                   
+                                        <a href="?mod=comment&act=detail&id=<?=$idsp?>" class="btn btn-secondary">Chi tiết</a>
                                     </td>
                                   
                                 </tr>
                                 <?php 
-                                $i++;
+                                
                                 }
                             }
                                 ?>

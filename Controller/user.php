@@ -65,11 +65,18 @@ if (isset($_GET['act'])) {
                 if (empty($signin)) {
                     $err .= 'Email hoặc mật khẩu không đúng. Vui lòng kiểm tra lại tài khoản';
                 } else {
+
+
                     $_SESSION['user'] = $signin;
                     if ($signin['quyen'] == 1) {
                         header('location:admin/');
                     } else {
-                        header('location:index.php');
+                        if(isset($_SESSION['page'])&&$_SESSION['page']=='page_detail'){
+                            header('location: index.php?mod=page&act=detail&id='.$_SESSION['idpro'].'#binhluan');
+                        }else{
+                            header('location:index.php');
+                        }
+                        
                     }
                 }
             }
@@ -155,7 +162,9 @@ if (isset($_GET['act'])) {
             break;
 
         case 'dangxuat':
-            session_destroy();
+            // session_destroy();
+            // session_unset();
+            unset($_SESSION['user']);
             header('location:index.php');
             break;
         default:

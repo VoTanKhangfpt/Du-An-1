@@ -6,20 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang chủ</title>
-    <link rel="stylesheet" href="Template/css/style.css">
+
     <link rel="stylesheet" href="Template/css/loaisanpham.css">
-    
+
     <link rel="stylesheet" href="Template/css/sanphamchitiet.css">
     <link rel="stylesheet" href="Template/css/dangnhap.css">
     <link rel="stylesheet" href="Template/css/dangky.css">
+    <link rel="stylesheet" href="Template/css/giohang.css">
+    <link rel="stylesheet" href="Template/css/thanhtoan.css">
     <link href="fontawesome-free-5.15.4-web/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+    <link rel="stylesheet" href="Template/css/style.css">
 </head>
 
 <body>
+
     <div class="gvn-banner-header" class="">
         <div class="owl-stage-outer">
             <a href="#" style="background: url(Template/img/banner-qc/banner1.png); background-position: center; background-repeat: no-repeat; "></a>
@@ -31,7 +34,7 @@
             <header id="mast-head">
                 <div class="container">
                     <div id="primary">
-                        
+
                         <div class="mast-head">
                             <div class="header-logo-area">
                                 <div class="header-site-branding">
@@ -44,55 +47,33 @@
                                     </div>
 
                                     <div id="desktop-small-menu">
-                                        <button id="btn-mobile-menu" class="navbar-toggle-close" type="button">
-                                            <i class="far fa-window-close"></i>
-                                        </button>
+                                        <div id="btn-mobile-menu" class="navbar-toggle-close">
+                                            Danh mục
+                                        </div>
                                         <div class="lst-items">
-                                            <a href="./loaisanpham.html"><i class="fas fa-laptop"></i>
-                                                <h3>Laptop Gaming</h3>
+                                            <?php if (isset($category_list)) {
+                                                foreach ($category_list as $cate) {
+                                                    extract($cate);
+
+                                            ?>
+                                                    <a href="?mod=page&act=product&id=<?= $id ?>"><img width="30%" src="uploads/images/<?= $anh ?>" alt="">
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;<h3><?= $tendm ?></h3>
+                                                    </a>
+                                                    <!-- <a href="./loaisanpham.html"><i class="fas fa-keyboard"></i>
+                                                <h3>Bàn phím Gaming</h3>
                                             </a>
-                                            <a href="./loaisanpham.html"><i class="fas fa-laptop-code"></i>
-                                                <h3>Laptop văn phòng</h3>
-                                            </a>
-                                            <a href="./loaisanpham.html"><i class="fab fa-apple"></i>
-                                                <h3>Apple</h3>
+                                            <a href="./loaisanpham.html"><i class="fa-solid fa-chair"></i>
+                                                <h3>Ghế Gaming</h3>
                                             </a>
                                             <a href="./loaisanpham.html"><i class="fas fa-desktop"></i>
                                                 <h3>PC Gaming</h3>
                                             </a>
                                             <a href="./loaisanpham.html"><i class="fas fa-server"></i>
-                                                <h3>PC – Máy bộ GEARVN</h3>
-                                            </a>
-                                            <a href="./loaisanpham.html"><i class="fas fa-tv"></i>
-                                                <h3>Màn hình</h3>
-                                            </a>
-                                            <a href="./loaisanpham.html"><i class="fas fa-microchip"></i></i>
-                                                <h3>Main - CPU - VGA</h3>
-                                            </a>
-                                            <a href="./loaisanpham.html"><i class="fas fa-battery-three-quarters"></i>
-                                                <h3>Case - Tản - Nguồn</h3>
-                                            </a>
-                                            <a href="./loaisanpham.html"><i class="fas fa-memory"></i>
-                                                <h3>SSD - HDD - RAM</h3>
-                                            </a>
-                                            <a href="./loaisanpham.html"><i class="fas fa-keyboard"></i>
-                                                <h3>Bàn phím</h3>
-                                            </a>
-                                            <a href="./loaisanpham.html"><i class="fas fa-mouse"></i>
-                                                <h3>Chuột</h3>
-                                            </a>
-                                            <a href="./loaisanpham.html"><i class="fas fa-headphones"></i>
-                                                <h3>Tai nghe - Loa</h3>
-                                            </a>
-                                            <a href="./loaisanpham.html"><i class="fas fa-print"></i>
-                                                <h3>Máy in, phần mềm</h3>
-                                            </a>
-                                            <a href="./loaisanpham.html"><i class="fas fa-chair"></i>
-                                                <h3>Ghế &amp; bàn</h3>
-                                            </a>
-                                            <a href="./loaisanpham.html"><i class="fas fa-wifi"></i>
-                                                <h3>Thiết bị mạng</h3>
-                                            </a>
+                                                <h3>Bộ định tuyến không dây</h3>
+                                            </a> -->
+
+                                            <?php }
+                                            } ?>
                                         </div>
                                     </div>
                                 </div>
@@ -129,7 +110,7 @@
                                         <aside>
                                             <i class="far fa-user"></i>
                                             <span>
-                                                
+
                                                 <?= $_SESSION['user']['ten'] ?>
                                             </span>
                                         </aside>
@@ -146,7 +127,7 @@
 
                                 <div class="header-icon header-icon__cart">
                                     <aside>
-                                        <a href="giohang.html">
+                                        <a href="?mod=cart&act=show">
                                             <i class="fas fa-shopping-cart"></i>
 
                                         </a>
@@ -314,7 +295,6 @@
 
             </footer>
 
-        </div>
     </main>
 </body>
 
@@ -382,8 +362,38 @@
             header.style.display = 'block';
         }
     }
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    // Quantity 
+    $('.pro-qty').prepend('<button class="dec qtybtn">-</button>');
+    $('.pro-qty').append('<button class="inc qtybtn">+</button>');
+    $('.qtybtn').on('click', function() {
+        var $button = $(this);
+        var oldValue = $button.parent().find('input').val();
+        if ($button.hasClass('inc')) {
+            var newVal = parseFloat(oldValue) + 1;
+        } else {
+            // Don't allow decrementing below zero
+            if (oldValue > 0) {
+                var newVal = parseFloat(oldValue) - 1;
+            } else {
+                newVal = 0;
+            }
+        }
+        $button.parent().find('input').val(newVal);
+    });
 
-    var btn
+    /*----- 
+    	Shipping Form Toggle
+    --------------------------------*/
+    $('[data-shipping]').on('click', function() {
+        if ($('[data-shipping]:checked').length > 0) {
+            $('#shipping-form').slideDown();
+        } else {
+            $('#shipping-form').slideUp();
+        }
+    })
 </script>
 
 </html>

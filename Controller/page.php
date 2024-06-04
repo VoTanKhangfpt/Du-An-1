@@ -1,7 +1,8 @@
 <?php
 
 include_once 'Model/DAO/product.php';
-//include_once 'Model/categories.php';
+// include_once 'Model/DAO/binhluan.php';
+include_once 'Model/DAO/category.php';
 //include_once 'Model/pdo.php';
 //include_once 'Model/cart.php';
 if ($_GET['act']) {
@@ -76,14 +77,21 @@ if ($_GET['act']) {
             //            // session_destroy();
             //            break;
             case 'product':
-                // if (isset($_GET['cat_id'])) {
-                //     $data = getProductByCatID($_GET['cat_id']);
-                // }
+                if (isset($_GET['id'])) {
+                    $iddm = $_GET['id'];
+                    $pro_category = get_product_danhmuc($iddm);
+                }
                 $viewName = 'page_product_category';
+                break;
+
+            case 'comment':
+                $idpro = $_GET['idpro'];              
+                header('Location: View/page_binhluan.php?id=' . $idpro.'');
                 break;
         default:
             $viewName = '404';
             break;
     }
+    $category_list = getAll_category();
     include_once 'View/page_layout.php';
 }

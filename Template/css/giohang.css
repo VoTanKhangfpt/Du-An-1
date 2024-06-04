@@ -34,7 +34,7 @@
   background-color: #fff;
 }
 
-.cart-items .woocommerce-cart-form__cart-item .product-name .remove-product a {
+/* .cart-items .woocommerce-cart-form__cart-item .product-name .remove-product a {
   color: #ed1c24;
 }
 
@@ -46,8 +46,8 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: stretch;
-}
-
+} */
+/* 
 .woocommerce
   form
   .cart-items
@@ -142,7 +142,7 @@
   background-color: white;
   border-width: 0;
   cursor: pointer;
-}
+} */
 
 .woocommerce form .cart-info .coupon {
   padding: 10px;
@@ -333,4 +333,96 @@
     .product-price {
     justify-content: center;
   }
+}
+
+
+/* New Cart */
+.cart-table th.pro-title,
+.cart-table td.pro-title {
+  min-width: 200px;
+}
+
+.cart-table td.pro-thumbnail a {
+  display: block;
+  border: 1px solid #eeeeee;
+}
+
+.cart-table td.pro-thumbnail a img {
+  width: 100%;
+  background-color: #f6f7f8;
+}
+
+.cart-table td.pro-title a {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333333;
+}
+
+.cart-table td.pro-title a:hover {
+  color: #cea679;
+}
+
+.cart-table td.pro-price span {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: #333333;
+}
+
+.cart-table td.pro-quantity .pro-qty {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  text-align: center;
+  border: 1px solid #eeeeee;
+}
+
+.cart-table td.pro-quantity .pro-qty .qtybtn {
+  height: 42px;
+  padding: 0 10px;
+  border: none;
+  background-color: transparent;
+}
+
+.cart-table td.pro-quantity .pro-qty input {
+  height: 42px;
+  width: 50px;
+  text-align: center;
+  border-width: 0 1px;
+  border-style: solid;
+  border-color: #eeeeee;
+  color: #333333;
+}
+
+.cart-table td.pro-subtotal span {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: #333333;
+}
+
+.cart-table td.pro-addtocart button {
+  width: 140px;
+  border-radius: 50px;
+  height: 44px;
+  border: 1px solid #cea679;
+  line-height: 24px;
+  padding: 5px 20px;
+  font-weight: 700;
+  text-transform: capitalize;
+  color: #ffffff;
+  background-color: #cea679;
+}
+
+
+
+
+
+.cart-table td.pro-remove a i {
+  font-size: 18px;
+  color: #ff0000;
+}
+
+.cart-table td.pro-remove a i:hover {
+  cursor: pointer;
 }
