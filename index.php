@@ -9,7 +9,10 @@ if (file_exists($path) & isset($_GET['act'])) {
 } else {
     header("location:?mod=page&act=home");
 }
-echo 'khang';
+
+echo 'trungtuyen123';
+echo 'bao';
+
 ?>
 
 
