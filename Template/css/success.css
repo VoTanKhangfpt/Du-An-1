@@ -1,0 +1,136 @@
+#main {
+    padding: 20px;
+    background-color: #fff;
+}
+
+.checkout-page-title {
+    background-color: #007bff;
+    color: #fff;
+    padding: 15px 0;
+    text-align: center;
+}
+
+.checkout-page-title .breadcrumbs a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.checkout-page-title .breadcrumbs a:hover {
+    text-decoration: underline;
+}
+
+.checkout-page-title .breadcrumbs .divider {
+    margin: 0 5px;
+}
+
+.cart-container {
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 1200px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+.woocommerce {
+    margin-top: 20px;
+}
+
+.woocommerce .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.woocommerce .col {
+    padding: 15px;
+    flex: 1;
+}
+
+.woocommerce h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.woocommerce table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.woocommerce th, .woocommerce td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.woocommerce th {
+    background-color: #f7f7f7;
+    font-weight: bold;
+    text-align: left;
+}
+
+.woocommerce .product-name a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.woocommerce .product-name a:hover {
+    text-decoration: underline;
+}
+
+.woocommerce .product-quantity {
+    display: block;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.woocommerce .amount {
+    font-weight: bold;
+    color: #000;
+}
+
+.woocommerce-customer-details {
+    margin-top: 30px;
+}
+
+.woocommerce-customer-details address {
+    font-style: normal;
+    line-height: 1.5;
+}
+
+.woocommerce-notice {
+    padding: 15px;
+    border-left: 5px solid #28a745;
+    background-color: #dff0d8;
+    color: #3c763d;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.woocommerce-order-overview {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.woocommerce-order-overview li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.woocommerce-order-overview li strong {
+    float: right;
+    color: #000;
+}
+
+.woocommerce-order-overview__order,
+.woocommerce-order-overview__date,
+.woocommerce-order-overview__email,
+.woocommerce-order-overview__total,
+.woocommerce-order-overview__payment-method {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

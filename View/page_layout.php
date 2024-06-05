@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="Template/css/dangky.css">
     <link rel="stylesheet" href="Template/css/giohang.css">
     <link rel="stylesheet" href="Template/css/thanhtoan.css">
+    <link rel="stylesheet" href="Template/css/success.css">
     <link href="fontawesome-free-5.15.4-web/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -366,8 +367,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
     // Quantity 
-    $('.pro-qty').prepend('<button class="dec qtybtn">-</button>');
-    $('.pro-qty').append('<button class="inc qtybtn">+</button>');
+    $('.pro-qty').prepend('<button type="button" class="dec qtybtn">-</button>');
+    $('.pro-qty').append('<button type="button" class="inc qtybtn">+</button>');
     $('.qtybtn').on('click', function() {
         var $button = $(this);
         var oldValue = $button.parent().find('input').val();
@@ -394,6 +395,83 @@
             $('#shipping-form').slideUp();
         }
     })
+
+
+    // $(document).ready(function() {
+    //     $(".soluong").change(function(e) {
+    //         e.preventDefault();
+
+    //         var soluong = $(this).val();
+    //         alert(soluong);
+    //         var price =  $(this).closest('tr').find('.gia').text();
+    //         alert(price);
+    //         var kq = soluong*price;
+    //         var txt = $(this).parent().parent().next().find("span").html(kq);
+    //         alert(txt);
+    //         var mycart = $(".thanhtien");
+    //         var tong = 0;
+    //         for (let i = 0; i < mycart.length; i++) {
+    //             tong += parseInt(mycart[i].innerText);
+    //         }
+
+    //         $("#tongtien").html(tong);
+    //         $.post("soluongsp.php", {
+    //                 soluong: soluong
+    //             },
+    //             function(data, textStatus, jqXHR) {
+    //                 $("msg").html(data);
+    //             }
+
+
+    //         );
+    //     })
+    // });
+
+    // $(document).ready(function() {
+    //     $(".soluong").change(function(e) {
+    //         e.preventDefault();
+    //         var soluong = $(this).val();
+    //         console.log(soluong);
+    //     })
+    // })
+    $(document).ready(function() {
+        $(".soluong").change(function(e) {
+            e.preventDefault();
+            var id = $(this).parent().parent().next().next().next().find('.idsp').val();
+            
+            var soluong = $(this).val();
+
+            var element_price = $(this).parent().parent().prev().find('.gia').text();
+            var price = element_price.replaceAll('.', '').slice(0, -3);
+            var kq = soluong * price;
+            var total = kq.toLocaleString("vi") + " VNĐ";
+            var element_total = $(this).parent().parent().next().find('span').html(total);
+
+
+
+            var mycart = $(".thanhtien");
+            var tong = 0;
+            for (let i = 0; i < mycart.length; i++) {
+                // mycart[i].innerText = mycart[i].innerText.replaceAll('.', '').slice(0, -3);
+                $bientam = mycart[i].innerText.replaceAll('.', '').slice(0, -3)
+                // tong += parseInt(thanhtien)
+                tong += parseInt($bientam);
+            }
+
+            $("#tongtien").html(tong.toLocaleString("vi") + " ");
+            $.post("http://localhost/Git_Hub/Du-An-1/?mod=cart&act=update", {
+                   id:id, soluong: soluong, tongtien: kq
+                },
+                function(data, textStatus, jqXHR) {
+                    console.log(data);
+                }
+
+
+            );
+
+
+        });
+    });
 </script>
 
 </html>

@@ -1,4 +1,6 @@
 <?php
+
+
 if (is_array($item) && count($item) > 0) {
     extract($item);
 }
@@ -50,11 +52,15 @@ if (is_array($item) && count($item) > 0) {
                             <li>Hỗ&nbsp;trợ trả góp MPOS (Thẻ tín dụng), HDSAISON.</li>
                         </ul>
                         <p class="pd-stock-status"><strong style="display: block;">CÒN HÀNG</strong></p>
-                        <form id="cart-top" class="cart" action="giohang.html">
-                            <button type="submit" class="single_add_to_cart_button button alt" style="display: block;">
-                                <b>Mua hàng</b><br>
+                        <form id="cart-top" class="cart" method="post" action="?mod=cart&act=add">
+                        <input type="hidden" name="price" value="<?=$gia_km?>">
+                        <input type="hidden" name="idsp" value="<?=$id?>">
+                        <button type="submit" name="btn-submit" class="single_add_to_cart_button button alt" style="display: block;">
+                                <b>Mua ngay</b><br>
                                 <span>Giao tận nơi hoặc nhận tại siêu thị</span>
                             </button>
+                        
+                        
                         </form>
                     </div>
                 </div>
@@ -288,3 +294,5 @@ if (is_array($item) && count($item) > 0) {
 
 
 </div>
+
+

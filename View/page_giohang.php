@@ -61,17 +61,29 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
-                                    <tr>
-                                        <td class="pro-thumbnail"><a href="#"><img src="assets/images/product/product-3.jpg" alt="Product"></a></td>
-                                        <td class="pro-title"><a href="#">Orange Decker drill</a></td>
-                                        <td class="pro-price"><span>$25.00</span></td>
-                                        <td class="pro-quantity">
-                                            <div class="pro-qty"><input type="number" value="1"></div>
-                                        </td>
-                                        <td class="pro-subtotal"><span>$25.00</span></td>
-                                        <td class="pro-remove"><a href="#"><i class="fa-solid fa-trash-can"></i></a></td>
-                                    </tr>
+                                    <?php if (is_array($listcart)) {
+                                        $tongtiengiohang = 0;
+                                        foreach ($listcart as $cart) {
+                                            $tongtiengiohang += $cart['tongtien'];
+                                            extract($cart);
+
+                                    ?>
+                                            <tr>
+
+                                                <td class="pro-thumbnail"><a href="#"><img src="uploads/images/<?= $hinh ?>" alt="Product"></a></td>
+                                                <td class="pro-title"><a href="#"><?= $ten ?></a></td>
+                                                <td class="pro-price"><span class="gia"><?= number_format($gia_km, 0, ",", ".") ?>VNĐ</span></td>
+                                                <td class="pro-quantity">
+                                                    <div class="pro-qty"><input class="soluong" type="number" value="<?= $soluong ?>"></div>
+                                                </td>
+                                                <td class="pro-subtotal thanhtien"><span><?= number_format($tongtien, 0, ",", ".") ?> VNĐ</span></td>
+                                                <td class="pro-remove"><a href="?mod=cart&act=delete&id=<?= $idsp ?>"><i class="fa-solid fa-trash-can"></i></a></td>
+                                                <td><input type="hidden" class="idsp" value="<?= $idsp ?>"></input></td>
+
+
+                                            </tr>
+                                    <?php }
+                                    } ?>
                                 </tbody>
                                 <!-- <tfoot>
                                     <tr>
@@ -108,7 +120,7 @@
                                         <tr class="order-total">
                                             <th>Tổng</th>
                                             <td>
-                                                <strong><span class="woocommerce-Price-amount total-price1">39,990,000
+                                                <strong><span class="woocommerce-Price-amount total-price1" id="tongtien"><?= $tongtiengiohang ?>
                                                     </span></strong>VND
                                             </td>
                                         </tr>
@@ -118,7 +130,7 @@
                         </div>
                         <div class="cart-btns">
                             <div class="wc-proceed-to-checkout">
-                                <a href="?mod=cart&act=checkout" class="checkout-button button">Tiến hành thanh toán</a>
+                                <a href="?mod=thanhtoan&act=checkout&tongtien_gh=<?= $tongtiengiohang ?>" class="checkout-button button">Tiến hành thanh toán</a>
                             </div>
                         </div>
                     </div>

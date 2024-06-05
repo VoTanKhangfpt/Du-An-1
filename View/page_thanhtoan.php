@@ -5,7 +5,7 @@
             <div class="col-12">
 
                 <!-- Checkout Form Start-->
-                <form action="#" class="checkout-form">
+                <form action="index.php?mod=thanhtoan&act=dathang&tongtien=<?=$tongtiengiohang?>" method="post" class="checkout-form">
                     <div class="row row-40">
 
                         <div class="col-lg-7">
@@ -16,19 +16,23 @@
                                 <div class="row">
                                     <div class="col-md-12 col-12 mb-5">
                                         <label>Họ và tên</label>
-                                        <input type="text" placeholder="Họ và tên">
+                                        <input name="ten" type="text" placeholder="Họ và tên">
                                     </div>
                                     <div class="col-md-12 col-12 mb-5">
-                                        <label>Email Address*</label>
-                                        <input type="email" placeholder="Email">
+                                        <label>Địa chỉ Email</label>
+                                        <input name="email" type="email" placeholder="Email">
                                     </div>
                                     <div class="col-md-12 col-12 mb-5">
-                                        <label>Phone no*</label>
-                                        <input type="text" placeholder="Số điện thoại">
+                                        <label>Số điện thoại</label>
+                                        <input name="sodienthoai" type="text" placeholder="Số điện thoại">
                                     </div>
                                     <div class="col-12 mb-5">
-                                        <label>Address*</label>
-                                        <input type="text" placeholder="Nhập địa chỉ">
+                                        <label>Địa chỉ</label>
+                                        <input name="diachi" type="text" placeholder="Nhập địa chỉ">
+                                    </div>
+                                    <div class="col-12 mb-5">
+                                        <label>Ghi chú</label>
+                                        <textarea name="ghichu" id="" cols="30" rows="10">Thông tin bổ sung</textarea>
                                     </div>
                                     <div class="col-12 mb-5">
                                         <div class="check-box">
@@ -39,7 +43,7 @@
 
                                 </div>
                                 <!-- Shipping Address -->
-                                <div id="shipping-form">
+                                <!-- <div id="shipping-form">
                                     <h4 class="checkout-title">Shipping Address</h4>
 
                                     <div class="row">
@@ -61,7 +65,7 @@
                                             <input type="text" placeholder="Nhập địa chỉ">
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
 
                             <!-- Shipping Address -->
@@ -81,16 +85,21 @@
                                         <h4>Sản phẩm <span>Tổng cộng</span></h4>
 
                                         <ul>
-                                            <li>Teritory Quentily X 01 <span>$35.00</span></li>
-                                            <li>Adurite Silocone X 02 <span>$59.00</span></li>
+                                            <?php if(is_array($show_cart_thanhtoan)){
+                                                foreach($show_cart_thanhtoan as $thanhtoan){
+                                                    extract($thanhtoan);
+                                                ?>
+                                            <li><?=$ten?> X <?=$soluong?> <span><?=number_format($gia_km,0,",",".")?></span></li>
+                                            <!-- <li>Adurite Silocone X 02 <span>$59.00</span></li>
                                             <li>Baizidale Momone X 01 <span>$78.00</span></li>
-                                            <li>Makorone Cicile X 01 <span>$65.00</span></li>
+                                            <li>Makorone Cicile X 01 <span>$65.00</span></li> -->
+                                            <?php }}?>
                                         </ul>
 
-                                        <p>Tổng phụ <span>$296.00</span></p>
-                                        <p>Phí vận chuyển <span>$00.00</span></p>
+                                        <p>Tổng phụ <span><?=number_format($tongtiengiohang,0,",",".")?> VNĐ</span></p>
+                                        <p>Phí vận chuyển <span><?=$ship?> VND</span></p>
 
-                                        <h4>Tổng tiền thanh toán <span>$296.00</span></h4>
+                                        <h4>Tổng tiền thanh toán <span><?=number_format($tongtiengiohang+$ship,0,",",".")?> VNĐ</span></h4>
 
                                     </div>
 
@@ -105,7 +114,7 @@
 
                                         
                                         <div class="single-method">
-                                            <input type="radio" id="payment_paypal" name="payment-method" value="paypal">
+                                            <input type="radio" id="payment_paypal" name="payment-method" value="momo">
                                             <label for="payment_paypal">Chuyển khoản MOMO </label>
                                             
                                             
@@ -113,7 +122,7 @@
                                         <p style="color:#fff";>Thực hiện thanh toán vào ngay tài khoản ngân hàng của chúng tôi. Vui lòng sử dụng Mã đơn hàng của bạn trong phần Nội dung thanh toán. Đơn hàng sẽ đươc giao sau khi tiền đã chuyển.</p>
 
                                         <div class="single-method">
-                                            <input type="radio" id="payment_payoneer" name="payment-method" value="payoneer">
+                                            <input type="radio" id="payment_payoneer" name="payment-method" value="pay_order">
                                             <label for="payment_payoneer">Thanh toán khi nhận hàng</label>
                                             
                                         </div>
@@ -122,7 +131,7 @@
 
                                     </div>
 
-                                    <button class="place-order btn btn-lg btn-round btn-danger">Place order</button>
+                                    <button type="submit" name="btn-submit" class="place-order btn btn-lg btn-round btn-danger">Place order</button>
 
                                 </div>
 
@@ -133,6 +142,7 @@
 
                     </div>
                 </form>
+                
 
             </div>
         </div>

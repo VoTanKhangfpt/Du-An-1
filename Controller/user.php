@@ -65,7 +65,7 @@ if (isset($_GET['act'])) {
                 if (empty($signin)) {
                     $err .= 'Email hoặc mật khẩu không đúng. Vui lòng kiểm tra lại tài khoản';
                 } else {
-
+                    unset($_SESSION['thongbao']);
 
                     $_SESSION['user'] = $signin;
                     if ($signin['quyen'] == 1) {
