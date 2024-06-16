@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Sản phẩm</h1>
+                    <h1>Quản lí sản phẩm</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -38,12 +38,13 @@
                                     <tr>
                                         <th scope="col">STT</th>
                                         <th scope="col">Tên sản phẩm</th>
-                                        <th scope="col">Hình</th>
+                                        <th scope="col" style="text-align:center; width:10%;">Hình</th>
                                         <th scope="col">Danh mục</th>
                                         <th scope="col">Số lượng</th>
                                         <th scope="col">Giá</th>
                                         <th scope="col">Giá khuyến mãi</th>
                                         <th scope="col">Nhà sản xuất</th>
+                                        <th scope="col">Số lượng</th>
                                         <th scope="col">Hot</th>
                                         <th scope="col">Ẩn hiện</th>
                                         <th scope="col">Thao tác</th>
@@ -59,16 +60,17 @@
                                         <tr>
                                                 <td><?=$i?></td>
                                                 <td><?=$tensp?></td>
-                                                <td><img src="../uploads/images/<?=$hinh?>" alt="" width="100%"></td>
+                                                <td align="center"><img src="../uploads/images/<?=$hinh?>" alt="" width="100%"></td>
                                                 <td><?=$tendm?></td>
                                                 <td><?=$soluong?></td>
                                                 <td><?=number_format($gia,0,",",".")?><sup>đ</sup></td>
                                                 <td><?=number_format($gia_km,0,",",".")?><sup>đ</sup></td>
                                                 <td><?=$ten?></td>
+                                                <td><?=$soluong?></td>
                                                 <td><?=$hot?></td>
                                                 <td><?=$an_hien?></td>
                                                 <td>
-                                                    <a href="?mod=product&act=edit&id=<?=$id?>" class="btn btn-primary mb-2">Edit</a>
+                                                    <a href="?mod=product&act=edit&id=<?=$id?>" class="btn btn-primary">Edit</a>
                                                     <a href="?mod=product&act=delete&id=<?=$id?>" class="btn btn-danger">Xóa</a>
 
                                                 </td>

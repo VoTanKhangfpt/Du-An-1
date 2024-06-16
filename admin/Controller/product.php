@@ -24,6 +24,7 @@ if (isset($_GET['act'])) {
                 $anhien = $_POST['an_hien'];
                 $iddm = $_POST['iddm'];
                 $id_nhasx = $_POST['id_nhasx'];
+                $soluong = $_POST['soluong'];
                 $can_nang = $_POST['can_nang'];
                 $mau_sac = $_POST['mau_sac'];
                 $target_dir = '../uploads/images/';
@@ -33,7 +34,8 @@ if (isset($_GET['act'])) {
                     move_uploaded_file($file_name["tmp_name"], $target_file);
                 }
 
-                create_product($ten, $gia, $gia_km, $hot, $mota, $anhien, $iddm, $id_nhasx, $can_nang, $mau_sac, $file_name['name']);
+                create_product($ten, $gia, $gia_km, $hot, $mota, $anhien, $iddm, $id_nhasx, $soluong, $can_nang, $mau_sac, $file_name['name']);
+                countProduct($iddm);
                 header("location:index.php?mod=product&act=list");
             }
             $view_name = 'product_add';
@@ -56,6 +58,7 @@ if (isset($_GET['act'])) {
                     $anhien = $_POST['an_hien'];
                     $iddm = $_POST['iddm'];
                     $id_nhasx = $_POST['id_nhasx'];
+                    $soluong = $_POST['soluong'];
                     $can_nang = $_POST['can_nang'];
                     $mau_sac = $_POST['mau_sac'];
                     $target_dir = '../uploads/images/';
@@ -66,7 +69,8 @@ if (isset($_GET['act'])) {
                         move_uploaded_file($file_name["tmp_name"], $target_file);
                     }
 
-                    update_product($id, $ten, $gia, $gia_km, $hot, $mota, $anhien, $iddm, $id_nhasx, $can_nang, $mau_sac, $file_name["name"]);
+                    update_product($id, $ten, $gia, $gia_km, $hot, $mota, $anhien, $iddm, $id_nhasx, $soluong, $can_nang, $mau_sac, $file_name["name"]);
+                    countProduct($iddm);
                     header("location:index.php?mod=product&act=list");
                 }
                 

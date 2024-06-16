@@ -49,7 +49,7 @@ if (isset($thongbao) && $thongbao !== '') {
                                         <th scope="col" style="text-align: center;">Người bình luận</th>
                                         <th scope="col" style="text-align: center;">Phê duyệt</th>
 
-                                        <th scope="col" style="text-align: center;">Thao tác</th>
+                                        
 
                                     </tr>
                                 </thead>
@@ -74,11 +74,7 @@ if (isset($thongbao) && $thongbao !== '') {
                                                         <span class="slider round"></span>
                                                     </label>
                                                 </td>
-                                                <td align="center">
-
-
-                                                    <a href="?mod=comment&act=delete&id=<?= $idbl ?>&idsp=<?= $product_list['id'] ?>" class="btn btn-secondary">Xóa</a>
-                                                </td>
+                                                
 
                                             </tr>
                                     <?php
@@ -131,23 +127,3 @@ if (isset($thongbao) && $thongbao !== '') {
 </script> -->
 
 
-<script>
-    $(document).ready(function() {
-        $(".toggle-comment").click(function() {
-            var diachi = "http://localhost/Git_Hub/Du-An-1/admin/index.php?mod=comment&act=edit";
-            var status = $(this).is(':checked') ? 1 : 0;
-            var id = $(this).attr('data-id');
-            $.ajax({
-                url: diachi,
-                data: {
-                    catId: id
-                },
-                method: "POST",
-                cache: false,
-                success: function(data) {
-                    console.log(data);
-                }
-            });
-        })
-    })
-</script>

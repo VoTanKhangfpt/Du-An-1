@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="Template/css/giohang.css">
     <link rel="stylesheet" href="Template/css/thanhtoan.css">
     <link rel="stylesheet" href="Template/css/success.css">
+    <link rel="stylesheet" href="Template/css/info.css">
     <link href="fontawesome-free-5.15.4-web/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -23,7 +24,7 @@
 </head>
 
 <body>
-
+    <div class="loader"></div>
     <div class="gvn-banner-header" class="">
         <div class="owl-stage-outer">
             <a href="#" style="background: url(Template/img/banner-qc/banner1.png); background-position: center; background-repeat: no-repeat; "></a>
@@ -39,7 +40,7 @@
                         <div class="mast-head">
                             <div class="header-logo-area">
                                 <div class="header-site-branding">
-                                    <a href="index.php"><img id="logo" style="width: 180px; height: 71px;" src="Template/img/brands/logo1.png" alt="" width="301" height="71"></a>
+                                    <a href="index.php"><img id="logo" style="width: 180px; height: 71px;" src="Template/img/brands/logo.png" alt="" width="301" height="71"></a>
                                 </div>
 
                                 <div class="off-canvas-navigation-wrapper">
@@ -80,18 +81,18 @@
                                 </div>
                             </div>
 
-                            <form action="#" class="navbar-search">
+                            <form action="index.php?mod=page&act=search" method="post" class="navbar-search">
                                 <div class="input_group_search">
                                     <div class="input-search-field">
-                                        <input type="text" placeholder="Bạn tìm gì...">
+                                        <input type="text" name="timkiem" placeholder="Bạn tìm gì..." id="search-product">
                                     </div>
                                     <div class="input-group-btn">
-                                        <button class="btn btn-danger p-0" type="submit"><i class="fas fa-search"></i>Tìm kiếm</button>
+                                        <button name="btn_timkiem" class="btn btn-danger p-0" type="submit"><i class="fas fa-search"></i>Tìm kiếm</button>
                                     </div>
                                 </div>
                             </form>
                             <div class="header-icons">
-                                <?php if (!isset($_SESSION["user"]['ten'])) : ?>
+                                <?php if (empty($_SESSION["user"])) : ?>
                                     <div class="header-icon">
                                         <aside>
                                             <i class="far fa-user"></i>
@@ -106,195 +107,223 @@
                                             <a href="?mod=user&act=dangky">Đăng ký</a>
                                         </div>
                                     </div>
-                                <?php else : ?>
-                                    <div class="header-icon">
-                                        <aside>
-                                            <i class="far fa-user"></i>
-                                            <span>
+                            </div>
+                        <?php elseif (!empty($_SESSION["user"]) && $_SESSION["user"]['quyen'] == 1) : ?>
+                            <div class="header-icon">
+                                <aside>
+                                    <i class="far fa-user"></i>
+                                    <span>
 
-                                                <?= $_SESSION['user']['ten'] ?>
-                                            </span>
-                                        </aside>
+                                        <?= $_SESSION['user']['ten'] ?>
+                                    </span>
+                                </aside>
 
-                                        <div class="popup-navbar-account">
-                                            <a href="#">Thông tin tài khoản</a>
-                                            <a href="?mod=user&act=doimatkhau">Đổi mật khẩu</a>
-                                            <a href="#">Đơn hàng của bạn</a>
-                                            <a href="?mod=user&act=dangxuat">Đăng xuất</a>
-                                        </div>
-                                    </div>
-
-                                <?php endif; ?>
-
-                                <div class="header-icon header-icon__cart">
-                                    <aside>
-                                        <a href="?mod=cart&act=show">
-                                            <i class="fas fa-shopping-cart"></i>
-
-                                        </a>
-                                        <span class="cart-items-count">0</span>
-                                        <span class="cart-title">Giỏ hàng</span>
-                                    </aside>
+                                <div class="popup-navbar-account">
+                                    <a href="?mod=user&act=info">Thông tin tài khoản</a>
+                                    <a href="admin/">Trang quản trị</a>
+                                    <a href="#">Đơn hàng của bạn</a>
+                                    <a href="?mod=user&act=dangxuat">Đăng xuất</a>
                                 </div>
                             </div>
+                        <?php else : ?>
+                            <div class="header-icon">
+                                <aside>
+                                    <i class="far fa-user"></i>
+                                    <span>
+
+                                        <?= $_SESSION['user']['ten'] ?>
+                                    </span>
+                                </aside>
+
+                                <div class="popup-navbar-account">
+                                    <a href="?mod=user&act=info">Thông tin tài khoản</a>
+                                    <a href="?mod=user&act=doimatkhau">Đổi mật khẩu</a>
+                                    <a href="#">Đơn hàng của bạn</a>
+                                    <a href="?mod=user&act=dangxuat">Đăng xuất</a>
+                                </div>
+                            </div>
+
+                        <?php endif; ?>
+
+                        <div class="header-icon header-icon__cart">
+                            <aside>
+                                <a href="?mod=cart&act=show">
+                                    <i class="fas fa-shopping-cart"></i>
+
+                                </a>
+                                <span class="cart-items-count"><?php if (isset($sum_orders)) echo $sum_orders; ?></span>
+                                <span class="cart-title">Giỏ hàng</span>
+                            </aside>
                         </div>
+                        </div>
+                        <ul class="list-group" id="output-search">
+
+
+
+                        </ul>
+
                     </div>
-
-
                 </div>
-            </header>
 
 
-            <!-- content -->
-            <?php include_once 'View/' . $viewName . '.php'; ?>
-            <!-- content end -->
+        </div>
 
-            <footer id="colophon">
 
-                <div class="container">
-                    <div>
-                        <div class="footer-newsletter">
-                            <div class="footer-newsletter-inner">
-                                <div class="newsletter-content">
-                                    <h5 class="newsletter-title">Đăng ký nhận bản tin GEARVN</h5>
-                                    <span class="newsletter-marketing-text">Nhận ngay thông tin về các chương trình khuyến
-                                        mãi</span>
-                                </div>
-                                <div class="newsletter-form">
-                                    <form action="#" class="navbar-search">
-                                        <div class="input_group_search">
-                                            <div class="input-search-field">
-                                                <input type="text" placeholder="Email của bạn...">
-                                            </div>
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-danger p-0" type="submit"></i>Đăng ký</button>
-                                            </div>
-                                        </div>
+        </header>
 
-                                    </form>
-                                </div>
+
+
+        <!-- content -->
+        <?php include_once 'View/' . $viewName . '.php'; ?>
+        <!-- content end -->
+
+        <footer id="colophon">
+
+            <div class="container">
+                <div>
+                    <div class="footer-newsletter">
+                        <div class="footer-newsletter-inner">
+                            <div class="newsletter-content">
+                                <h5 class="newsletter-title">Đăng ký nhận bản tin GEARVN</h5>
+                                <span class="newsletter-marketing-text">Nhận ngay thông tin về các chương trình khuyến
+                                    mãi</span>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="footer-widgets">
-                        <div class="widget-column">
-                            <aside class="widget_text">
-                                <div class="widget_body">
-                                    <h4 class="widget-title">VỀ GEARVN</h4>
-                                    <ul class="link-list">
-                                        <li><a href="gioithieu.html">Giới thiệu về GEARVN</a></li>
-                                        <li><a href="#">Tuyển dụng khối Văn phòng</a></li>
-                                        <li><a href="#">Tuyển dụng khối Showroom</a></li>
-                                        <li><a href="#">Chính sách bảo mật</a></li>
-                                        <li><a href="#">Điều khoản sử dụng</a></li>
-                                    </ul>
-                                </div>
-                            </aside>
-
-                            <aside class="widget_text">
-                                <div class="widget_body">
-                                    <h4 class="widget-title">HỆ THỐNG TỔNG ĐÀI MIỄN PHÍ: <br> (Làm việc từ 9:00 - 19:00)
-                                    </h4>
-                                    <ul class="link-list">
-                                        <li><a href="#">Tổng đài mua hàng: <b> 1800 6975</b></a></li>
-                                        <li><a href="#">Tổng đài hỗ trợ khách hàng: <b> 1800 6173</b></a></li>
-                                    </ul>
-                                </div>
-                            </aside>
-
-                            <aside class="widget_text">
-                                <div class="widget_body">
-                                    <h4 class="widget-title">THÔNG TIN</h4>
-                                    <ul class="link-list">
-                                        <li><a href="#">Theo dõi đơn hàng</a></li>
-                                        <li><a href="#">Mua & giao nhận hàng</a></li>
-                                        <li><a href="#">Quy định & hình thức thanh toán</a></li>
-                                        <li><a href="#">Bảo hành & bảo trì</a></li>
-                                        <li><a href="#">Đổi trả & hoàn tiền</a></li>
-                                    </ul>
-                                </div>
-                            </aside>
-
-                            <aside class="widget_text">
-                                <div class="widget_body">
-                                    <h4 class="widget-title">ĐƠN VỊ VẬN CHUYỂN</h4>
-                                    <ul class="list-delivery">
-                                        <li><img src="../Template/img/footer/ĐƠN VỊ VẬN CHUYỂN/ems.png" alt=""></li>
-                                        <li><img src="../Template/img/footer/ĐƠN VỊ VẬN CHUYỂN/giao-hang-chanh-xe.png" alt="">
-                                        </li>
-                                        <li><img src="../Template/img/footer/ĐƠN VỊ VẬN CHUYỂN/giao-hang-gearvn.png" alt=""></li>
-                                        <li><img src="../Template/footer/ĐƠN VỊ VẬN CHUYỂN/giao-hang-nhanh.png" alt=""></li>
-                                    </ul>
-                                </div>
-                                <div class="widget_body mr-top-30">
-                                    <h4 class="widget-title">CÁCH THỨC THANH TOÁN</h4>
-                                    <ul class="list-delivery">
-                                        <li><img src="Template/img/footer/CÁCH THỨC THANH TOÁN/internet.png" alt=""></li>
-                                        <li><img src="Template/img/footer/CÁCH THỨC THANH TOÁN/jcb.png" alt=""></li>
-                                        <li><img src="../Template/img/footer/CÁCH THỨC THANH TOÁN/Mastercard.png" alt=""></li>
-                                        <li><img src="../Template/img/footer/CÁCH THỨC THANH TOÁN/momooo.png" alt=""></li>
-                                    </ul>
-                                    <ul class="list-delivery">
-                                        <li><img src="Template/img/footer/CÁCH THỨC THANH TOÁN/money-face.png" alt=""></li>
-                                        <li><img src="Template/img/footer/CÁCH THỨC THANH TOÁN/tra-gop.png" alt=""></li>
-                                        <li><img src="Template/img/footer/CÁCH THỨC THANH TOÁN/VISA.png" alt=""></li>
-                                        <li><img src="Template/img/footer/CÁCH THỨC THANH TOÁN/zalopay@3x.png" alt=""></li>
-                                    </ul>
-                                </div>
-                            </aside>
-                        </div>
-                        <div class="footer-bottom-widgets">
-                            <div class="widget-bottom-column">
-                                <aside class="widget_bottom_text">
-                                    <div class="widget_bottom_body">
-                                        <a href="#"><img src="https://gstatic.gearvn.com/2021/08/Logo-GEARVN_pc-300x70-1-1.png" alt="" width="200px"></a>
-                                        <h3 class="widget-bottom-title">CÔNG TY TNHH THƯƠNG MẠI GEARVN</h3>
-                                        <p>GearVN là doanh nghiệp chuyên cung cấp thiết bị, giải pháp về máy tính, thiết bị
-                                            chơi game, thiết bị công nghệ cao cấp hàng đầu Việt Nam.</p>
-                                        <img src="https://gstatic.gearvn.com/2020/01/20150827110756-dathongbao.png" alt="" width="200px">
-                                    </div>
-                                </aside>
-
-                                <aside class="widget_bottom_text">
-                                    <div class="widget_bottom_body">
-                                        <h4 class="widget-bottom-title">HỆ THỐNG SHOWROOM</h4>
-                                        <ul class="link-bottom-list">
-                                            <h4>SHOWROOM HCM (Làm việc từ 9:00 - 19:00)</h4>
-                                            <li>Địa chỉ: 78-80-82 Hoàng Hoa Thám, Phường 12, Quận Tân Bình.</li>
-                                            <h4>SHOWROOM HN (Làm việc từ 9:00 - 19:00)</h4>
-                                            <li>Địa chỉ : 37 Ngõ 121 Thái Hà, Phường Trung Liệt, Quận Đống Đa.</li>
-                                        </ul>
-                                    </div>
-                                </aside>
-
-                                <aside class="widget_bottom_text">
-                                    <div class="widget_bottom_body" style="text-align: center;">
-                                        <h4 class="widget-bottom-title">TIN TỨC CÔNG NGHỆ</h4>
-                                        <img src="https://gstatic.gearvn.com/2021/07/GVN360-04.png" alt="" width="150px">
-                                        <h4 class="widget-bottom-title">Kết nối với chúng tôi</h4>
-                                    </div>
-                                    <ul class="link-bottom-list" style="text-align: center;">
-                                        <div class="connect-with-us">
-                                            <a href="https://www.facebook.com/gearvnhcm/"><img src="https://gstatic.gearvn.com/2020/01/facebook.png" alt=""></a>
-                                            <a href="https://www.facebook.com/groups/VietnamGamingConner/"><img src="https://gstatic.gearvn.com/2020/01/group.png" alt=""></a>
-                                            <a href="https://www.youtube.com/channel/UCdxRpD_T4-HzPsely-Fcezw"><img src="https://gstatic.gearvn.com/2020/01/youtube.png" alt=""></a>
+                            <div class="newsletter-form">
+                                <form action="#" class="navbar-search">
+                                    <div class="input_group_search">
+                                        <div class="input-search-field">
+                                            <input type="text" placeholder="Email của bạn...">
                                         </div>
-                                    </ul>
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-danger p-0" type="submit"></i>Đăng ký</button>
+                                        </div>
+                                    </div>
 
-                                </aside>
+                                </form>
 
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <div class="footer-widgets">
+                    <div class="widget-column">
+                        <aside class="widget_text">
+                            <div class="widget_body">
+                                <h4 class="widget-title">VỀ GEARVN</h4>
+                                <ul class="link-list">
+                                    <li><a href="gioithieu.html">Giới thiệu về GEARVN</a></li>
+                                    <li><a href="#">Tuyển dụng khối Văn phòng</a></li>
+                                    <li><a href="#">Tuyển dụng khối Showroom</a></li>
+                                    <li><a href="#">Chính sách bảo mật</a></li>
+                                    <li><a href="#">Điều khoản sử dụng</a></li>
+                                </ul>
+                            </div>
+                        </aside>
+
+                        <aside class="widget_text">
+                            <div class="widget_body">
+                                <h4 class="widget-title">HỆ THỐNG TỔNG ĐÀI MIỄN PHÍ: <br> (Làm việc từ 9:00 - 19:00)
+                                </h4>
+                                <ul class="link-list">
+                                    <li><a href="#">Tổng đài mua hàng: <b> 1800 6975</b></a></li>
+                                    <li><a href="#">Tổng đài hỗ trợ khách hàng: <b> 1800 6173</b></a></li>
+                                </ul>
+                            </div>
+                        </aside>
+
+                        <aside class="widget_text">
+                            <div class="widget_body">
+                                <h4 class="widget-title">THÔNG TIN</h4>
+                                <ul class="link-list">
+                                    <li><a href="#">Theo dõi đơn hàng</a></li>
+                                    <li><a href="#">Mua & giao nhận hàng</a></li>
+                                    <li><a href="#">Quy định & hình thức thanh toán</a></li>
+                                    <li><a href="#">Bảo hành & bảo trì</a></li>
+                                    <li><a href="#">Đổi trả & hoàn tiền</a></li>
+                                </ul>
+                            </div>
+                        </aside>
+
+                        <aside class="widget_text">
+                            <div class="widget_body">
+                                <h4 class="widget-title">ĐƠN VỊ VẬN CHUYỂN</h4>
+                                <ul class="list-delivery">
+                                    <li><img src="../Template/img/footer/ĐƠN VỊ VẬN CHUYỂN/ems.png" alt=""></li>
+                                    <li><img src="../Template/img/footer/ĐƠN VỊ VẬN CHUYỂN/giao-hang-chanh-xe.png" alt="">
+                                    </li>
+                                    <li><img src="../Template/img/footer/ĐƠN VỊ VẬN CHUYỂN/giao-hang-gearvn.png" alt=""></li>
+                                    <li><img src="../Template/footer/ĐƠN VỊ VẬN CHUYỂN/giao-hang-nhanh.png" alt=""></li>
+                                </ul>
+                            </div>
+                            <div class="widget_body mr-top-30">
+                                <h4 class="widget-title">CÁCH THỨC THANH TOÁN</h4>
+                                <ul class="list-delivery">
+                                    <li><img src="Template/img/footer/CÁCH THỨC THANH TOÁN/internet.png" alt=""></li>
+                                    <li><img src="Template/img/footer/CÁCH THỨC THANH TOÁN/jcb.png" alt=""></li>
+                                    <li><img src="../Template/img/footer/CÁCH THỨC THANH TOÁN/Mastercard.png" alt=""></li>
+                                    <li><img src="../Template/img/footer/CÁCH THỨC THANH TOÁN/momooo.png" alt=""></li>
+                                </ul>
+                                <ul class="list-delivery">
+                                    <li><img src="Template/img/footer/CÁCH THỨC THANH TOÁN/money-face.png" alt=""></li>
+                                    <li><img src="Template/img/footer/CÁCH THỨC THANH TOÁN/tra-gop.png" alt=""></li>
+                                    <li><img src="Template/img/footer/CÁCH THỨC THANH TOÁN/VISA.png" alt=""></li>
+                                    <li><img src="Template/img/footer/CÁCH THỨC THANH TOÁN/zalopay@3x.png" alt=""></li>
+                                </ul>
+                            </div>
+                        </aside>
+                    </div>
+                    <div class="footer-bottom-widgets">
+                        <div class="widget-bottom-column">
+                            <aside class="widget_bottom_text">
+                                <div class="widget_bottom_body">
+                                    <a href="#"><img src="https://gstatic.gearvn.com/2021/08/Logo-GEARVN_pc-300x70-1-1.png" alt="" width="200px"></a>
+                                    <h3 class="widget-bottom-title">CÔNG TY TNHH THƯƠNG MẠI GEARVN</h3>
+                                    <p>GearVN là doanh nghiệp chuyên cung cấp thiết bị, giải pháp về máy tính, thiết bị
+                                        chơi game, thiết bị công nghệ cao cấp hàng đầu Việt Nam.</p>
+                                    <img src="https://gstatic.gearvn.com/2020/01/20150827110756-dathongbao.png" alt="" width="200px">
+                                </div>
+                            </aside>
+
+                            <aside class="widget_bottom_text">
+                                <div class="widget_bottom_body">
+                                    <h4 class="widget-bottom-title">HỆ THỐNG SHOWROOM</h4>
+                                    <ul class="link-bottom-list">
+                                        <h4>SHOWROOM HCM (Làm việc từ 9:00 - 19:00)</h4>
+                                        <li>Địa chỉ: 78-80-82 Hoàng Hoa Thám, Phường 12, Quận Tân Bình.</li>
+                                        <h4>SHOWROOM HN (Làm việc từ 9:00 - 19:00)</h4>
+                                        <li>Địa chỉ : 37 Ngõ 121 Thái Hà, Phường Trung Liệt, Quận Đống Đa.</li>
+                                    </ul>
+                                </div>
+                            </aside>
+
+                            <aside class="widget_bottom_text">
+                                <div class="widget_bottom_body" style="text-align: center;">
+                                    <h4 class="widget-bottom-title">TIN TỨC CÔNG NGHỆ</h4>
+                                    <img src="https://gstatic.gearvn.com/2021/07/GVN360-04.png" alt="" width="150px">
+                                    <h4 class="widget-bottom-title">Kết nối với chúng tôi</h4>
+                                </div>
+                                <ul class="link-bottom-list" style="text-align: center;">
+                                    <div class="connect-with-us">
+                                        <a href="https://www.facebook.com/gearvnhcm/"><img src="https://gstatic.gearvn.com/2020/01/facebook.png" alt=""></a>
+                                        <a href="https://www.facebook.com/groups/VietnamGamingConner/"><img src="https://gstatic.gearvn.com/2020/01/group.png" alt=""></a>
+                                        <a href="https://www.youtube.com/channel/UCdxRpD_T4-HzPsely-Fcezw"><img src="https://gstatic.gearvn.com/2020/01/youtube.png" alt=""></a>
+                                    </div>
+                                </ul>
+
+                            </aside>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
 
 
 
-            </footer>
+
+        </footer>
 
     </main>
 </body>
@@ -324,7 +353,6 @@
 
     // AUTOMATIC
     function showSlides() {
-        console.log("ABC");
         var i;
         var slides = document.getElementsByClassName("mySlides");
         for (i = 0; i < slides.length; i++) {
@@ -353,37 +381,47 @@
         }
     }
 
-    var btnmobileMenu = document.getElementById('btn-mobile-menu');
-    //Đóng mở menu mobile
-    btnmobileMenu.onclick = function() {
-        if (a == 1) {
-            header.style.display = 'none';
-            a--;
-        } else {
-            header.style.display = 'block';
-        }
-    }
+    // var btnmobileMenu = document.getElementById('btn-mobile-menu');
+    // //Đóng mở menu mobile
+    // btnmobileMenu.onclick = function() {
+    //     if (a == 1) {
+    //         header.style.display = 'none';
+    //         a--;
+    //     } else {
+    //         header.style.display = 'block';
+    //     }
+    // }
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
-    // Quantity 
-    $('.pro-qty').prepend('<button type="button" class="dec qtybtn">-</button>');
-    $('.pro-qty').append('<button type="button" class="inc qtybtn">+</button>');
-    $('.qtybtn').on('click', function() {
-        var $button = $(this);
-        var oldValue = $button.parent().find('input').val();
-        if ($button.hasClass('inc')) {
-            var newVal = parseFloat(oldValue) + 1;
-        } else {
-            // Don't allow decrementing below zero
-            if (oldValue > 0) {
-                var newVal = parseFloat(oldValue) - 1;
-            } else {
-                newVal = 0;
-            }
-        }
-        $button.parent().find('input').val(newVal);
+    window.addEventListener("load", () => {
+        const loader = document.querySelector(".loader");
+
+        loader.classList.add("loader--hidden");
+
+        loader.addEventListener("transitionend", () => {
+            document.body.removeChild(loader);
+        });
     });
+
+    // Quantity 
+    // $('.pro-qty').prepend('<button type="button" class="dec qtybtn">-</button>');
+    // $('.pro-qty').append('<button type="button" class="inc qtybtn">+</button>');
+    // $('.qtybtn').on('click', function() {
+    //     var $button = $(this);
+    //     var oldValue = $button.parent().find('input').val();
+    //     if ($button.hasClass('inc')) {
+    //         var newVal = parseFloat(oldValue) + 1;
+    //     } else {
+    //         // Don't allow decrementing below zero
+    //         if (oldValue > 0) {
+    //             var newVal = parseFloat(oldValue) - 1;
+    //         } else {
+    //             newVal = 0;
+    //         }
+    //     }
+    //     $button.parent().find('input').val(newVal);
+    // });
 
     /*----- 
     	Shipping Form Toggle
@@ -397,59 +435,28 @@
     })
 
 
-    // $(document).ready(function() {
-    //     $(".soluong").change(function(e) {
-    //         e.preventDefault();
-
-    //         var soluong = $(this).val();
-    //         alert(soluong);
-    //         var price =  $(this).closest('tr').find('.gia').text();
-    //         alert(price);
-    //         var kq = soluong*price;
-    //         var txt = $(this).parent().parent().next().find("span").html(kq);
-    //         alert(txt);
-    //         var mycart = $(".thanhtien");
-    //         var tong = 0;
-    //         for (let i = 0; i < mycart.length; i++) {
-    //             tong += parseInt(mycart[i].innerText);
-    //         }
-
-    //         $("#tongtien").html(tong);
-    //         $.post("soluongsp.php", {
-    //                 soluong: soluong
-    //             },
-    //             function(data, textStatus, jqXHR) {
-    //                 $("msg").html(data);
-    //             }
-
-
-    //         );
-    //     })
-    // });
-
-    // $(document).ready(function() {
-    //     $(".soluong").change(function(e) {
-    //         e.preventDefault();
-    //         var soluong = $(this).val();
-    //         console.log(soluong);
-    //     })
-    // })
     $(document).ready(function() {
+        // $("#addcart").click(function (e) { 
+        //     e.preventDefault();
+
+        // });
+
+
         $(".soluong").change(function(e) {
             e.preventDefault();
-            var id = $(this).parent().parent().next().next().next().find('.idsp').val();
-            
-            var soluong = $(this).val();
+            var id = $(this).parent().parent().next().next().next().val(); //id cua sanpham
 
-            var element_price = $(this).parent().parent().prev().find('.gia').text();
-            var price = element_price.replaceAll('.', '').slice(0, -3);
+            var soluong = $(this).val(); //soluong hien tai
+
+            var element_price = $(this).parent().parent().prev().find('.gia').text(); //giá trị của hàng giá
+            var price = element_price.replaceAll('.', '').slice(0, -3); //tach lay so that
             var kq = soluong * price;
             var total = kq.toLocaleString("vi") + " VNĐ";
-            var element_total = $(this).parent().parent().next().find('span').html(total);
+            var element_total = $(this).parent().parent().next().find('span').html(total); //gan lai gia trị cho tong cong
 
 
 
-            var mycart = $(".thanhtien");
+            var mycart = $(".thanhtien"); //thanh tien
             var tong = 0;
             for (let i = 0; i < mycart.length; i++) {
                 // mycart[i].innerText = mycart[i].innerText.replaceAll('.', '').slice(0, -3);
@@ -459,19 +466,78 @@
             }
 
             $("#tongtien").html(tong.toLocaleString("vi") + " ");
-            $.post("http://localhost/Git_Hub/Du-An-1/?mod=cart&act=update", {
-                   id:id, soluong: soluong, tongtien: kq
+            $("#tongtien_gh").attr("href", "?mod=thanhtoan&act=checkout&tongtien_gh=" + tong);
+            $.ajax({
+                url: "http://localhost/Git_Hub/Du-An-1/?mod=cart&act=update",
+                data: {
+                    id: id,
+                    soluong: soluong,
+                    tongtien: kq
                 },
-                function(data, textStatus, jqXHR) {
-                    console.log(data);
+                method: 'POST',
+                cache: false,
+                success: function(data) {
+                    document.location = "http://localhost/Git_Hub/Du-An-1/?mod=cart&act=show";
                 }
+            });
 
 
-            );
+        });
 
+
+        $('.remove-itemCart').click(function(event) {
+            event.preventDefault();
+            var active = confirm('Bạn thực sự muốn xóa sản phẩm này ra khỏi giỏ hàng');
+            if (active == true) {
+                var idsp = $(this).parent().next().val();
+                $.ajax({
+                    url: "http://localhost/Git_Hub/Du-An-1/?mod=cart&act=delete",
+                    data: {
+                        id: idsp
+                    },
+                    method: 'GET',
+                    cache: false,
+                    success: function(data) {
+                        document.location = "http://localhost/Git_Hub/Du-An-1/?mod=cart&act=show";
+                    }
+                });
+            }
+        });
+
+
+
+
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        // var action = 'search'; 
+        $('#search-product').keyup(function(e) {
+            var search_name = $('#search-product').val();
+            if (search_name != '') {
+                $.ajax({
+                    url: "http://localhost/Git_Hub/Du-An-1/?mod=page&act=home",
+                    type: 'POST',
+                    cache: false,
+                    data: {
+                        // action: action,
+                        search_name: search_name
+                    },
+                    success: function(result) {
+                        $('#output-search').html(result);
+                        // console.log(result);
+
+                    }
+
+                });
+            } else {
+                $('#output-search').html(``);
+            }
 
         });
     });
 </script>
+
 
 </html>

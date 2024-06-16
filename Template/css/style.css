@@ -114,6 +114,7 @@ a {
   text-decoration: none;
   color: #333e48;
   width: 20%;
+  cursor: pointer;
 }
 
 li {
@@ -124,11 +125,55 @@ ul {
   padding: 0;
 }
 
+.alert p{
+  font-size: 1.1rem;
+  color: black;
+  font-weight: bold;
+}
+
 body {
   margin: 0;
   font-family: 'Lato', sans-serif;
   font-size: 0.875em;
 }
+
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background: #fff; */
+  transition: opacity 0.75s, visibility 0.75s;
+}
+
+.loader--hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader::after {
+  content: "";
+  width: 75px;
+  height: 75px;
+  border: 15px solid #dddddd;
+  border-top-color: #009578;
+  border-radius: 50%;
+  animation: loading 0.75s ease infinite;
+}
+
+@keyframes loading {
+  from {
+    transform: rotate(0turn);
+  }
+  to {
+    transform: rotate(1turn);
+  }
+}
+
 
 .mrl {
   margin-left: 80px;
@@ -1268,8 +1313,8 @@ a.ttname {
 }
 #desktop-small-menu {
   position: absolute; /* Hoặc position: fixed nếu bạn muốn menu cố định khi cuộn trang */
-  top: 131px;
-  margin-left: -195px;
+  top: 140px;
+  margin-left: -180px;
   width: 10%;
   background-color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -1318,4 +1363,39 @@ a.ttname {
   margin: 0;
 }
 
+.col-xl-8{
+  width: 100% !important;
+}
+
+.card-body{
+  border: 1px solid #ccc;
+  margin: 10px;
+}
+
+.text-muted{
+  font-size: 1.1rem;
+  display: flex;
+  justify-content: end;
+}
+
+.comment_text{
+  font-size: 1.6rem;
+}
+.justify-content-end{
+  width: 40%;
+  margin-left: 800px; 
+}
+
+
+#output-search{
+  position: absolute;
+  top: 150px;
+  left: 500px;
+  z-index: 1;
+  font-weight: bold;
+}
+
+#search-product{
+  position: relative;
+}
 

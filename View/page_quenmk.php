@@ -12,8 +12,9 @@
                     </div>
                     <?php if (isset($thongbao)&&$thongbao!="") {
                         echo '<div class="input-group">
-                        <div class="alert alert-danger" role="alert">
-                            ' . $thongbao . '
+                        <div class="alert alert-success" role="alert">
+                        <p>' . $thongbao . '</p>
+                            
                         </div>
                     </div>';
                     }
@@ -21,7 +22,8 @@
                     <?php if (isset($loi['email'])) {
                         echo '<div class="input-group">
                         <div class="alert alert-danger" role="alert">
-                            ' . $loi['email'] . '
+                        <p>' . $loi['email'] . '</p>
+                            
                         </div>
                     </div>';
                     }

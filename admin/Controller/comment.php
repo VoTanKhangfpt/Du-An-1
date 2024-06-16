@@ -42,14 +42,14 @@ if (isset($_GET['act'])) {
             
 
             break;
-        case "delete":
-            if(isset($_GET['id']) && isset($_GET['idsp'])){
-                $idbl = $_GET['id'];
-                $idsp = $_GET['idsp'];
-                comment_delete($idbl);
-            }            
-            header('Location: index.php?mod=comment&act=detail&id='.$idsp );
-            break;
+        // case "delete":
+        //     if(isset($_GET['id']) && isset($_GET['idsp'])){
+        //         $idbl = $_GET['id'];
+        //         $idsp = $_GET['idsp'];
+        //         comment_delete($idbl);
+        //     }            
+        //     header('Location: index.php?mod=comment&act=detail&id='.$idsp );
+        //     break;
         default:
             // 404
             $view_name = 'comment_list';

@@ -12,7 +12,7 @@ if (isset($thongbao) && $thongbao !== '') {
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Tài khoản</h1>
+                    <h1>Quản lí tài khoản</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -74,12 +74,10 @@ if (isset($thongbao) && $thongbao !== '') {
                                                     <?php if ($quyen >= 1) : ?>
                                                         <a href="index.php?mod=user&act=edit&id=<?= $id ?>&quyen=<?= $quyen ?>" class="btn btn-primary">Sửa</a>
                                                     <?php else : ?>
-                                                        <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                                                            Sửa
-                                                        </button> -->
-                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                                        <button type="button" class="btn btn-primary btn-edit-user" data-toggle="modal" data-target="#exampleModalCenter">
                                                             Sửa
                                                         </button>
+                                                        <!-- <script>alert('Đây không phải tài khoản Admin')</script> -->
 
                                                     <?php endif; ?>
 
@@ -123,29 +121,29 @@ if (isset($thongbao) && $thongbao !== '') {
 
 
 <!-- Modal -->
-<div class="modal fade" id="myModal">
+<!-- <div class="modal fade" id="myModal">
     <div class="modal-dialog">
         <div class="modal-content">
 
-            <!-- Modal Header -->
+            
             <div class="modal-header">
                 <h4 class="modal-title">Thông báo</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
-            <!-- Modal body -->
+            
             <div class="modal-body">
             Không thể cập nhật tài khoản của người dùng user
             </div>
 
-            <!-- Modal footer -->
+            
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
 
         </div>
     </div>
-</div>
+</div> -->
 <!-- <script>
         document.location = 'index.php?mod=user&act=list';
     </script> -->

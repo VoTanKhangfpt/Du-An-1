@@ -46,5 +46,10 @@
         pdo_execute($sql, $id);
     }
 
+    function updateinfo($ten, $email, $sodienthoai, $old_email){
+        $sql = "UPDATE taikhoan SET ten=?, email=?, sodienthoai=? WHERE email = ?";
+        pdo_execute($sql, $ten, $email, $sodienthoai, $old_email);
+    }
+
     
 ?>

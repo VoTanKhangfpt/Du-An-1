@@ -106,6 +106,12 @@
                                     </div>
                                     <div class="mb-3">
                                         <div class="form-group">
+                                            <label for="level" class="col-form-label">Số lượng:</label>
+                                            <input type="number" class="form-control" name="soluong" value="<?=$soluong?>" placeholder="Số lượng">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="form-group">
                                             <label for="level" class="col-form-label">Khối lượng:</label>
                                             <input type="text" class="form-control" name="can_nang" value="<?=$can_nang?>" placeholder="Khối lượng">
                                         </div>

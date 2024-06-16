@@ -8,12 +8,13 @@ if (isset($_GET['act'])) {
         case 'list':
             $category_list = getAll_category();
             $view_name = 'category_list';
-
+            
             break;
         case 'add':
             if (isset($_POST['btn-submit'])) {
                 $tendm = $_POST['tendm'];
                 $anhien = $_POST['anhien'];
+
                 $target_dir = '../uploads/images/';
                 $file_name = $_FILES['img'];
                 $target_file = $target_dir . basename($file_name["name"]);
@@ -24,6 +25,7 @@ if (isset($_GET['act'])) {
                 }
 
                 create_category($tendm, $anhien, $file_name['name']);
+
                 header("location:index.php?mod=category&act=list");
             }
             $view_name = 'category_add';
@@ -56,7 +58,7 @@ if (isset($_GET['act'])) {
             $thongbao = '';
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
-                $bonho = get_product_danhmuc($id);
+                $bonho = get_product_danhmuc('','',$id,'');
                 if (!empty($bonho)) {
                     $thongbao .= 'Vui xóa toàn bộ sản phẩm có liên quan đến danh mục trước khi xóa danh mục này';
                 } else {

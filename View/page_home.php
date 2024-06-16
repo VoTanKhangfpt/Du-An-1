@@ -151,9 +151,9 @@
 
                     
             ?>
-                    <a class="qc-first" href="sanphamchitiet.html" style="border: 1px solid #ededed;">
-                        <div class="list-product-item">
-                            <div class="list-product-item-img">
+                    <a class="qc-first" href="?mod=page&act=detail&id=<?=$id?>" style="border: 1px solid #ededed;">
+                        <div class="list-product-item">                      
+                            <div class="list-product-item-img">                               
                                 <img src="./uploads/images/<?= $hinh ?>" alt="">
                             </div>
                             <h2><?= $ten ?></h2>

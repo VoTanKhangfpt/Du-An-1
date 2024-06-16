@@ -4,6 +4,7 @@
 // include_once 'Model/pdo.php';
 // include_once 'Model/product.php';
 include_once 'Model/DAO/giohang.php';
+include_once 'Model/DAO/category.php';
 // include_once 'Model/user.php';
 if ($_GET['act']) {
     switch ($_GET['act']) {
@@ -14,23 +15,22 @@ if ($_GET['act']) {
             if (isset($_SESSION['user'])) {
                 $id_tk = $_SESSION['user']['id'];
                 $listcart = showcart($id_tk);
+                $tongtiengiohang = 0;    
                 $viewName = 'page_giohang';
-            }else{
+            } else {
                 $_SESSION['thongbao'] = 'Vui lòng đăng nhập để vào giỏ hàng!';
                 header("location:index.php?mod=user&act=dangnhap");
-                
             }
-            
            
+            
+
+
             break;
         case 'add':
             if (isset($_SESSION['user'])) {
                 if (isset($_POST['btn-submit'])) {
                     $idsp = $_POST['idsp'];
-
-
                     $price = $_POST['price'];
-
                     $quantity = 1;
                     $checkcart = checkcart_product($idsp, $_SESSION['user']['id']);
 
@@ -57,38 +57,41 @@ if ($_GET['act']) {
             }
             break;
         case 'delete':
-            // $id = '';
-            // if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            //     if (isset($_GET['id'])) {
-            //         $id = $_GET['id'];
-            //     }
-            // }
-            // delete_cart($id);
-            if(isset($_GET['id'])){
+            if (isset($_GET['id'])) {
                 $id = $_GET['id'];
                 delete_cart($id);
             }
-            header("location:?mod=cart&act=show");
+
             break;
+
         case 'update':
-            if(isset($_POST['soluong'])) {
+            if (isset($_POST['soluong'])) {
                 $idsp = $_POST['id'];
                 $soluong = $_POST['soluong'];
                 $tongtien = $_POST['tongtien'];
                 update($soluong, $tongtien, $idsp);
+                
+                
             }
             // if (isset($_POST['btn_update_cart'])) {
             //     // print_r($_POST['qty']);
             //     // return;
             //     update_cart($_POST['qty']);
-            //     header("location:index.php?mod=cart&act=show");
+
             // }
             break;
-        
-        
+
+
         default:
             $viewName = '404';
             break;
+    }
+    // $category_list = getAll_category();
+    if(!empty($_SESSION['user'])){
+        $sum_orders = getSum_orders($_SESSION['user']['id']);
+        if(empty($sum_orders)){
+            $sum_orders = 0;
+        }
     }
     include_once 'View/page_layout.php';
 }

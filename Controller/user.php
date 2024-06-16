@@ -1,6 +1,8 @@
 <?php
 require_once 'Model/DAO/pdo.php';
 require_once 'Model/DAO/user.php';
+require_once 'Model/DAO/giohang.php';
+require_once 'Model/DAO/category.php';
 require_once 'Model/guimail.php';
 
 
@@ -49,7 +51,7 @@ if (isset($_GET['act'])) {
 
                 if (empty($loi)) {
                     signup($hoten, $email, $sodienthoai, $password);
-                    header("Location:?mod=user&act=dangky");
+                    header("Location:?mod=user&act=dangnhap");
                 }
             }
 
@@ -71,12 +73,14 @@ if (isset($_GET['act'])) {
                     if ($signin['quyen'] == 1) {
                         header('location:admin/');
                     } else {
-                        if(isset($_SESSION['page'])&&$_SESSION['page']=='page_detail'){
-                            header('location: index.php?mod=page&act=detail&id='.$_SESSION['idpro'].'#binhluan');
-                        }else{
-                            header('location:index.php');
+                        if (isset($_SESSION['previous_url'])) {
+                            $previous_url = $_SESSION['previous_url'];
+                            unset($_SESSION['previous_url']);
+                            header('Location: ' . $previous_url . '#binhluan');
+                        } else {
+                            // Chuyển hướng đến trang mặc định nếu không có URL trước đó
+                            header('Location: index.php');
                         }
-                        
                     }
                 }
             }
@@ -127,14 +131,14 @@ if (isset($_GET['act'])) {
                 $matkhau = $_POST['matkhaucu'];
                 $matkhaucu = md5($matkhau);
                 $matkhaumoi_1 = $_POST['matkhaumoi_1'];
-                $matkhaumoi_2 = $_POST['matkhaumoi_2'];           
+                $matkhaumoi_2 = $_POST['matkhaumoi_2'];
                 $kiemtra_mk = singin($_SESSION['user']['email'], $matkhaucu);
 
-                if(empty($kiemtra_mk)){
+                if (empty($kiemtra_mk)) {
                     $loi['pass_old'] = "Mật khẩu không đúng";
                 }
 
-                
+
 
                 if (strlen($matkhaumoi_1) == 0) {
                     $loi['matkhau'] = "Không được để trống trường mật khẩu";
@@ -144,30 +148,87 @@ if (isset($_GET['act'])) {
                     $password_old = md5($matkhaumoi_1);
                 }
 
-                if($matkhaumoi_2==''){
+                if ($matkhaumoi_2 == '') {
                     $loi['other'] = 'Vui lòng nhập lại mật khẩu giống ở trên.';
-                }else if($matkhaumoi_2 != $matkhaumoi_1) {
+                } else if ($matkhaumoi_2 != $matkhaumoi_1) {
                     $loi['other'] = "Mật khẩu nhập lại không khớp!";
                 }
 
 
-                 
+
 
                 if (empty($loi)) {
-                    update_password($password_old,$_SESSION['user']['email'], );
+                    update_password($password_old, $_SESSION['user']['email'],);
                     $thongbao = 'Mật khẩu mới của bạn đã được cập nhật';
                 }
             }
             $viewName = 'page_doimatkhau';
             break;
 
+        case 'info':
+            if (!empty($_SESSION['user'])) {
+                // $ten = $_SESSION['user']['ten'];
+                // $sodienthoai = $_SESSION['user']['sodienthoai'];
+                
+                if (isset($_POST['btn-submit'])) {
+                    $hoten = $_POST['ten'];
+                    $email = $_POST['email'];
+                    $sodienthoai = $_POST['sodienthoai'];
+                    $password = $_SESSION['user']['matkhau'];
+                    $old_email = $_SESSION['user']['email'];
+                    $pattern_sdt = '/^(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})$/';
+                    $countEmail = get_countUser_email($email);
+                    if (strlen($hoten) == 0) {
+                        $loi['hoten'] = "Không được để trống trường họ tên";
+                    }
+
+                    if (strlen($email) == 0) {
+                        $loi['email'] = "Không được để trống trường email";
+                    } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                        $loi['email'] = "Email không đúng định dạng";
+                    } else if ($countEmail > 0 && $email !== $_SESSION['user']['email']) {
+                        $loi['email'] = "Email $email đã tồn tại. Vui lòng nhập email khác.";
+                    }
+
+                    if (!preg_match($pattern_sdt, $sodienthoai)) {
+                        $loi['sodienthoai'] = "Số điện thoại không hợp lệ";
+                    }
+
+                   
+                    if (empty($loi)) {
+                        updateinfo($hoten, $email, $sodienthoai, $old_email);
+                        $signin = singin($email, $password);
+                        $_SESSION['user'] = $signin;
+                        header('Location: ?mod=user&act=info');
+                    }
+                }
+                // $ten = $_SESSION['user']['ten'];
+                // $sodienthoai = $_SESSION['user']['sodienthoai'];
+                // $email = $_SESSION['user']['email'];
+                $viewName = 'page_info_user';
+                
+            } else {
+                header('Location: ?mod=user&act=dangnhap');
+            }
+
+            break;
+
         case 'dangxuat':
             // session_destroy();
             // session_unset();
             unset($_SESSION['user']);
+            unset($_SESSION['thongbao']);
+            unset($_SESSION['previous_url']);
             header('location:index.php');
             break;
         default:
+    }
+}
+$category_list = getAll_category();
+if (!empty($_SESSION['user'])) {
+    $sum_orders = getSum_orders($_SESSION['user']['id']);
+    if (empty($sum_orders)) {
+        $sum_orders = 0;
     }
 }
 require_once 'View/page_layout.php';

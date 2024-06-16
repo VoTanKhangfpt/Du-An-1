@@ -3,7 +3,7 @@ require_once 'pdo.php';
 
 function showcart($id_tk)
 {
-    $sql = "SELECT san_pham.id as idsp, san_pham.hinh, san_pham.ten, san_pham.gia_km, giohang.soluong, giohang.tongtien FROM giohang INNER JOIN san_pham ON san_pham.id = giohang.id_sp WHERE giohang.id_tk = ? ORDER BY giohang.id ASC";
+    $sql = "SELECT san_pham.id as idsp, san_pham.hinh as hinh, san_pham.ten as ten, san_pham.gia_km as gia, giohang.soluong as soluong, giohang.tongtien as tongtien FROM giohang INNER JOIN san_pham ON san_pham.id = giohang.id_sp WHERE giohang.id_tk = ? ORDER BY giohang.id ASC";
     return pdo_query($sql,$id_tk);
 }
 
@@ -11,17 +11,17 @@ function showcart($id_tk)
 //     $sql = "SELECT san_pham.*, giohang.* FROM giohang INNER JOIN san_pham ON san_pham.id = giohang.id_sp WHERE giohang.id_tk = ?";
 //     return pdo_query($sql, $id_tk);
 // }
-function showcartthanhtoan($id_khachhang)
-{
-   return pdo_query(
-      "SELECT hoa.*, giohang.*
-      FROM giohang
-      INNER JOIN hoa
-      ON hoa.id = giohang.id_hoa
-      WHERE giohang.id_khachhang = ?",
-      $id_khachhang
-   );
-}
+// function showcartthanhtoan($id_khachhang)
+// {
+//    return pdo_query(
+//       "SELECT hoa.*, giohang.*
+//       FROM giohang
+//       INNER JOIN hoa
+//       ON hoa.id = giohang.id_hoa
+//       WHERE giohang.id_khachhang = ?",
+//       $id_khachhang
+//    );
+// }
 
 function checkcart_product($id_sp, $id_tk)
 {
@@ -50,6 +50,11 @@ function deleteAll_cart($id_kh)
 {
     $sql = "DELETE FROM giohang WHERE id_tk = ?";
     pdo_execute($sql, $id_kh);
+}
+
+function getSum_orders($id_tk){
+    $sql = "SELECT sum(soluong) FROM giohang WHERE id_tk = ?";
+    return pdo_query_countItem($sql, $id_tk);
 }
 
 ?>

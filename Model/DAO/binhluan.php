@@ -6,7 +6,7 @@
         pdo_execute($sql, $id_tk, $id_sp, $noidung);
     }
     function binhluan_select_all($idpro){
-        $sql = "SELECT * FROM binhluan WHERE id_sp=? ORDER BY id DESC";
+        $sql = "SELECT * FROM binhluan WHERE id_sp=? AND trangthai=1 ORDER BY id DESC";
         return pdo_query($sql,$idpro);
     }
 

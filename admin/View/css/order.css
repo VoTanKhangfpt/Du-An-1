@@ -1,0 +1,60 @@
+form#filter-form {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 10px;
+  }
+  
+  #filter-form .select-wrapper {
+    /* flex-grow: 1; */
+    margin-right: 10px;
+  }
+
+  .select-wrapper select {
+    padding: 5px 10px;
+  }
+  
+  #filter-form .filter-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    /* display: inline-block; */
+    font-size: 16px;
+    transition-duration: 0.4s;
+    border-radius: 5px;
+  }
+  
+  #filter-form .filter-button:hover {
+    background-color: #0069d9;
+    color: white;
+  }
+
+
+  .paginition {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.paginition a {
+    margin: 0 5px;
+    padding: 5px 10px;
+    text-decoration: none;
+    background-color: #316b7d;
+    color: #fff;
+    border-radius: 3px;
+}
+
+td#thaotac{
+  display: flex;
+  justify-content: space-between;
+  column-gap: 5px;
+}
+
+td#thaotac a{
+  width: 80px;
+}

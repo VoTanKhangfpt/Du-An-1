@@ -12,7 +12,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Danh mục</h1>
+                    <h1>Quản lí danh mục</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -46,7 +46,7 @@
                                         <th scope="col" style="text-align: center;">#</th>
                                         <th scope="col" style="text-align: center;">Tên danh mục</th>
                                         <th scope="col" style="text-align: center;">Ảnh</th>
-                                        <th scope="col" style="text-align: center;">Số lượng sản phẩm</th>
+                                        <th scope="col" style="text-align: center;">Số lượng mặt hàng</th>
                                     
                                         <th scope="col" style="text-align: center;">Thao tác</th>
 

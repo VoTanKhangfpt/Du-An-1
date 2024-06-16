@@ -40,8 +40,8 @@
 }
 
 .woocommerce-ordering .input-radio .input-orderby-popularity {
-  background: #ed1c24;
-  color: #fff;
+  /* background: #ed1c24; */
+  /* color: #fff; */
   position: relative;
   height: 100%;
   line-height: 33px;
@@ -52,6 +52,11 @@
   cursor: pointer;
   padding: 10px;
   font-weight: bold;
+}
+
+.woocommerce-ordering .input-radio .input-orderby-popularity:hover{
+  background: #ed1c24;
+   color: #fff;
 }
 
 .woocommerce-ordering .input-radio .input-orderby-price {

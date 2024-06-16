@@ -4,9 +4,6 @@
 if (is_array($item) && count($item) > 0) {
     extract($item);
 }
-
-
-
 ?>
 
 
@@ -33,7 +30,7 @@ if (is_array($item) && count($item) > 0) {
                     <h1 class="product_title"><?= $ten ?></h1>
                     <p class="price"><span class="electro-price"><?= number_format($gia_km, 0, ",", ".") ?> VNĐ</span></p>
                     <div class="woocommerce-product-details__short-description">
-                        <p><strong><em>►BACK TO SCHOOL CÙNG ACER – Tặng thêm 01 năm bảo hành</em></strong></p>
+                        <!-- <p><strong><em>►BACK TO SCHOOL CÙNG ACER – Tặng thêm 01 năm bảo hành</em></strong></p>
 
                         <hr>
                         <p><span style="color: #ff0000;"><u><strong>Khuyến mãi:</strong></u></span></p>
@@ -44,23 +41,23 @@ if (is_array($item) && count($item) > 0) {
                         </p>
                         <hr>
                         <p><span style="color: #ff0000;"><u><strong>Ưu đãi đặc biệt khi mua kèm
-                                        LAPTOP:</strong></u></span></p>
-                        <ul>
+                                        LAPTOP:</strong></u></span></p> -->
+                        <!-- <ul>
                             <li>Mua thêm 1 thanh RAM 8GB chỉ với 990.000</li>
                             <li>Mua kèm màn hình giảm sốc lên đên 49%</li>
                             <li>Mua kèm sản phẩm khác giảm giá lên đến 56%</li>
                             <li>Hỗ&nbsp;trợ trả góp MPOS (Thẻ tín dụng), HDSAISON.</li>
-                        </ul>
+                        </ul> -->
                         <p class="pd-stock-status"><strong style="display: block;">CÒN HÀNG</strong></p>
                         <form id="cart-top" class="cart" method="post" action="?mod=cart&act=add">
-                        <input type="hidden" name="price" value="<?=$gia_km?>">
-                        <input type="hidden" name="idsp" value="<?=$id?>">
-                        <button type="submit" name="btn-submit" class="single_add_to_cart_button button alt" style="display: block;">
+                            <input type="hidden" name="price" value="<?= $gia_km ?>">
+                            <input type="hidden" name="idsp" value="<?= $id ?>">
+                            <button type="submit" id="addcart" name="btn-submit" class="single_add_to_cart_button button alt" style="display: block;">
                                 <b>Mua ngay</b><br>
                                 <span>Giao tận nơi hoặc nhận tại siêu thị</span>
                             </button>
-                        
-                        
+
+
                         </form>
                     </div>
                 </div>
@@ -239,9 +236,90 @@ if (is_array($item) && count($item) > 0) {
                 </div>
             </div>
             <div class="card-footer" id="binhluan">
-                
-                    <iframe src="?mod=page&act=comment&idpro=<?= $id ?>" width="100%" height="300px" frameborder="0"></iframe>
-                
+                <h2>Bình luận</h2>
+                <section>
+
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-12 col-lg-10 col-xl-8">
+                            <?php if (!empty($_SESSION['user'])) {
+                            ?>
+                                <div class="card">
+
+
+                                    <form action="?mod=page&act=comment" method="post">
+                                        <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+                                            <div class="d-flex flex-start w-100">
+                                                <!-- <img class="rounded-circle shadow-1-strong me-3" src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="40" height="40" /> -->
+                                                <div data-mdb-input-init class="form-outline w-100">
+                                                    <label class="form-label" for="textAreaExample">Bình luận</label>
+                                                    <textarea name="noidung" class="form-control" id="textAreaExample" rows="4" style="background: #fff;" placeholder="Nhập nội dung bình luận"></textarea>
+                                                    <input type="hidden" value="<?= $_GET['id'] ?>" name="idpro">
+
+                                                </div>
+                                            </div>
+                                            <div class="float-end mt-2 pt-1">
+                                                <button type="submit" name="guibinhluan" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-sm">Gửi bình luận</button>
+                                                <button type="reset" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary btn-sm">Nhập lại</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <?php if (!empty($dsbl)) {
+                                        $i = 0;
+                                        foreach ($dsbl as $bl) {
+                                            extract($bl);
+                                    ?>
+                                            <div class="card-body" id="comment">
+                                                <div class="d-flex flex-start align-items-center">
+                                                    <!-- <img class="rounded-circle shadow-1-strong me-3" src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="60" height="60" /> -->
+                                                    <div>
+                                                        <h6 class="fw-bold text-primary mb-1"><?= $ten ?></h6>
+
+                                                    </div>
+                                                </div>
+
+                                                <p class="mt-3 mb-4 pb-2 comment_text">
+                                                    <?= $noidung ?>
+
+                                                </p>
+                                                <p class="text-muted small mb-0">
+                                                    Ngày bình luận: <?= date_format(new DateTime($thoigianbinhluan), "Y/m/d H:i:s") ?>
+                                                </p>
+
+                                                <div class="d-flex justify-content-end">
+                                                    <a href="#!" class="d-flex align-items-center me-0">
+                                                        <i class="far fa-thumbs-up me-2"></i>
+                                                        <p class="mb-0">Like</p>
+                                                    </a>
+                                                    <a href="#!" class="d-flex align-items-center me-0">
+                                                        <i class="far fa-comment-dots me-2"></i>
+                                                        <p class="mb-0">Comment</p>
+                                                    </a>
+                                                    <a href="#!" class="d-flex align-items-center me-0">
+                                                        <i class="fas fa-share me-2"></i>
+                                                        <p class="mb-0">Share</p>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                    <?php $i++;
+                                        }
+                                    } ?>
+                                </div>
+                            <?php } else { ?>
+                                <?php
+                                // Lưu URL hiện tại và ID của trang chi tiết vào session
+                                $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
+                                $_SESSION['previous_page_id'] = $id;
+                                ?>
+                                <div class="">
+                                    <a href="?mod=user&act=dangnhap">Vui lòng đăng nhập để có thể bình luận về sản phẩm</a>
+                                </div>
+                            <?php } ?>
+
+                        </div>
+                    </div>
+
+                </section>
+
 
             </div>
         </div>
@@ -294,5 +372,3 @@ if (is_array($item) && count($item) > 0) {
 
 
 </div>
-
-

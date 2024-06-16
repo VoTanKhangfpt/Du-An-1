@@ -1,121 +1,132 @@
 <?php
-
 // include_once 'Model/connect.php';
 // include_once 'Model/pdo.php';
 // include_once 'Model/product.php';
 include_once 'Model/DAO/giohang.php';
 include_once 'Model/DAO/user.php';
+include_once 'Model/DAO/category.php';
 include_once 'Model/DAO/donhang.php';
 include_once 'Model/DAO/ct_donhang.php';
 // include_once 'Model/user.php';
 if ($_GET['act']) {
+    $ship = 20000;
     switch ($_GET['act']) {
         case 'checkout':
             $show_cart_thanhtoan = showcart($_SESSION['user']['id']);
-            $tongtiengiohang = $_GET['tongtien_gh'];
-            $ship = 20000;
+            if (!empty($_GET['tongtien'])) {
+                $tongtiengiohang = $_GET['tongtien'];
+            }
+
+
             $viewName = 'page_thanhtoan';
             break;
         case 'dathang':
-            if (isset($_POST['btn-submit'])) {
-                date_default_timezone_set('Asia/Ho_Chi_Minh');
-                $now = date('Y-m-d H:i:s');
-                if ($_POST['ten'] == "" || $_POST['diachi'] == "" ||  $_POST['sodienthoai'] == "" || $_POST['email'] == "") {
-                    header('location:index.php?mod=thanhtoan&act=checkout');
-                    // header('location:?mod=cart&act=thanhtoan&tongtiengiohang=' . $_POST['tongtien'] . '&dathang=false');
-                } else {
-                    if ($_POST['payment-method'] == "momo") {
-                        function execPostRequest($url, $data)
-                        {
-                            $ch = curl_init($url);
-                            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-                            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                            curl_setopt(
-                                $ch,
-                                CURLOPT_HTTPHEADER,
-                                array(
-                                    'Content-Type: application/json',
-                                    'Content-Length: ' . strlen($data)
-                                )
+            if (!empty($_SESSION['user'])) {
+                if (isset($_POST['btn-submit'])) {
+                    date_default_timezone_set('Asia/Ho_Chi_Minh');
+                    $now = date('Y-m-d H:i:s');
+                    if ($_POST['ten'] == "" || $_POST['diachi'] == "" ||  $_POST['sodienthoai'] == "" || $_POST['email'] == "" || empty($_POST['payment-method'])) {
+                        $show_cart_thanhtoan = showcart($_SESSION['user']['id']);
+                        $tongtiengiohang = 0;
+
+                        $err = "";
+                        $viewName = 'page_thanhtoan';
+                        // header('location:index.php?mod=thanhtoan&act=checkout');
+                    } else {
+                        if ($_POST['payment-method'] == "thanh toán qua momo") {
+                            function execPostRequest($url, $data)
+                            {
+                                $ch = curl_init($url);
+                                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                                curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+                                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                                curl_setopt(
+                                    $ch,
+                                    CURLOPT_HTTPHEADER,
+                                    array(
+                                        'Content-Type: application/json',
+                                        'Content-Length: ' . strlen($data)
+                                    )
+                                );
+                                curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+                                curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+                                //execute post
+                                $result = curl_exec($ch);
+                                //close connection
+                                curl_close($ch);
+                                return $result;
+                            }
+                            $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
+                            $partnerCode = 'MOMOBKUN20180529';
+                            $accessKey = 'klm05TvNBzhg7h7j';
+                            $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
+                            $orderInfo = "Thanh toán qua MoMo";
+                            $amount = "10000";
+                            // $orderId = time() . "";
+                            $orderId = rand(00, 9999);
+                            $redirectUrl = "http://localhost/Git_Hub/Du-An-1/?mod=thanhtoan&act=success";
+                            $ipnUrl = "http://localhost/Git_Hub/Du-An-1/?mod=thanhtoan&act=success";
+                            $extraData = "";
+                            $partnerCode = $partnerCode;
+                            $accessKey = $accessKey;
+                            $serectkey = $secretKey;
+                            $orderId = $orderId;
+                            $orderInfo = $orderInfo;
+                            $amount = $amount;
+                            $ipnUrl = $ipnUrl;
+                            $redirectUrl = $redirectUrl;
+                            $extraData = $extraData;
+                            $requestId = time() . "";
+                            $requestType = "payWithATM"; //Thanh toán với ATM
+                            // $requestType = "captureWallet"; //Thanh toán với QR
+                            $rawHash = "accessKey=" . $accessKey . "&amount=" . $amount . "&extraData=" . $extraData . "&ipnUrl=" . $ipnUrl . "&orderId=" . $orderId . "&orderInfo=" . $orderInfo . "&partnerCode=" . $partnerCode . "&redirectUrl=" . $redirectUrl . "&requestId=" . $requestId . "&requestType=" . $requestType;
+                            $signature = hash_hmac("sha256", $rawHash, $serectkey);
+                            $data = array(
+                                'partnerCode' => $partnerCode,
+                                'partnerName' => "Test",
+                                "storeId" => "MomoTestStore",
+                                'requestId' => $requestId,
+                                'amount' => $amount,
+                                'orderId' => $orderId,
+                                'orderInfo' => $orderInfo,
+                                'redirectUrl' => $redirectUrl,
+                                'ipnUrl' => $ipnUrl,
+                                'lang' => 'vi',
+                                'extraData' => $extraData,
+                                'requestType' => $requestType,
+                                'signature' => $signature
                             );
-                            curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-                            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
-                            //execute post
-                            $result = curl_exec($ch);
-                            //close connection
-                            curl_close($ch);
-                            return $result;
-                        }
-                        $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
-                        $partnerCode = 'MOMOBKUN20180529';
-                        $accessKey = 'klm05TvNBzhg7h7j';
-                        $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
-                        $orderInfo = "Thanh toán qua MoMo";
-                        $amount = "10000";
-                        // $orderId = time() . "";
-                        $orderId = rand(00, 9999);
-                        $redirectUrl = "http://localhost/Git_Hub/Du-An-1/?mod=thanhtoan&act=success";
-                        $ipnUrl = "http://localhost/Git_Hub/Du-An-1/?mod=thanhtoan&act=success";
-                        $extraData = "";
-                        $partnerCode = $partnerCode;
-                        $accessKey = $accessKey;
-                        $serectkey = $secretKey;
-                        $orderId = $orderId;
-                        $orderInfo = $orderInfo;
-                        $amount = $amount;
-                        $ipnUrl = $ipnUrl;
-                        $redirectUrl = $redirectUrl;
-                        $extraData = $extraData;
-                        $requestId = time() . "";
-                        $requestType = "payWithATM"; //Thanh toán với ATM
-                        // $requestType = "captureWallet"; //Thanh toán với QR
-                        $rawHash = "accessKey=" . $accessKey . "&amount=" . $amount . "&extraData=" . $extraData . "&ipnUrl=" . $ipnUrl . "&orderId=" . $orderId . "&orderInfo=" . $orderInfo . "&partnerCode=" . $partnerCode . "&redirectUrl=" . $redirectUrl . "&requestId=" . $requestId . "&requestType=" . $requestType;
-                        $signature = hash_hmac("sha256", $rawHash, $serectkey);
-                        $data = array(
-                            'partnerCode' => $partnerCode,
-                            'partnerName' => "Test",
-                            "storeId" => "MomoTestStore",
-                            'requestId' => $requestId,
-                            'amount' => $amount,
-                            'orderId' => $orderId,
-                            'orderInfo' => $orderInfo,
-                            'redirectUrl' => $redirectUrl,
-                            'ipnUrl' => $ipnUrl,
-                            'lang' => 'vi',
-                            'extraData' => $extraData,
-                            'requestType' => $requestType,
-                            'signature' => $signature
-                        );
-                        $result = execPostRequest($endpoint, json_encode($data));
-                        $jsonResult = json_decode($result, true);
-                        header('Location: ' . $jsonResult['payUrl']);
-                    } elseif ($_POST['payment-method'] == "pay_order") {
-                        $ten_kh = $_POST['ten'];
-                        $diachi = $_POST['diachi'];
-                        $sodienthoai = $_POST['sodienthoai'];
-                        $email = $_POST['email'];
-                        $ghichu = $_POST['ghichu'];
-                        $id_kh =  $_SESSION['user']['id'];
-                        $showcart_thanhtoan = showcart($id_kh);
-                        $tongtien = (float)$_GET['tongtien'];
-                        create_order($id_kh, $now, $tongtien);
-                        $iddh_current = getID_order_current();
-                        foreach ($showcart_thanhtoan as $thanhtoan) {
-                            insert_order_detail($ten_kh, $thanhtoan['ten'], $thanhtoan['soluong'], $thanhtoan['gia_km'], $now, $diachi,  $sodienthoai, $email, $ghichu, $iddh_current['id_donhang'], $thanhtoan['idsp']);
-                        }
-                        deleteAll_cart($id_kh);
-                        
-                        header('Location: ?mod=thanhtoan&act=success&id=<?=$iddh_current?>');
-                        // $idthanhtoanmoi = idthanhtoanmoi();
+                            $result = execPostRequest($endpoint, json_encode($data));
+                            $jsonResult = json_decode($result, true);
+                            header('Location: ' . $jsonResult['payUrl']);
+                        } elseif ($_POST['payment-method'] == "thanh toán khi nhận hàng") {
+                            $ten_kh = $_POST['ten'];
+                            $diachi = $_POST['diachi'];
+                            $sodienthoai = $_POST['sodienthoai'];
+                            $email = $_POST['email'];
+                            $ghichu = $_POST['ghichu'];
+                            $pttt = $_POST['payment-method'];
+                            $id_kh =  $_SESSION['user']['id'];
+                            $showcart_thanhtoan = showcart($id_kh);
+                            if (isset($_GET['tongtien'])) {
+                                $tongtien = (float)$_GET['tongtien'] + $ship;
+                            }
 
-                        // $showthanhtoan = showthanhtoan_user($_SESSION['id_khachhang'], $idthanhtoanmoi['id_donhang']);
-                        // $showthanhtoan1 = showthanhtoan_user($_SESSION['id_khachhang'], $idthanhtoanmoi['id_donhang']);
-                        // $thanhtoan = array_shift($showthanhtoan1);
-                        // $tongtien = 0;
-
+                            create_order($id_kh, $now, $tongtien, $ten_kh, $diachi, $sodienthoai, $email, $ghichu, $pttt);
+                            $iddh_current = getID_order_current();
+                            $iddh = $iddh_current['id_donhang'];
+                            foreach ($showcart_thanhtoan as $thanhtoan) {
+                                extract($thanhtoan);
+                                insert_order_detail($ten, $gia, $soluong, $tongtien, $iddh, $idsp);
+                            }
+                            deleteAll_cart($id_kh);
+                            header('Location: ?mod=thanhtoan&act=success&id=' . $iddh);
+                        }
                     }
                 }
+            } else {
+                $_SESSION['thongbao'] = 'Vui lòng đăng nhập để mua hàng!';
+                header("location:index.php?mod=user&act=dangnhap");
             }
             $viewName = "page_thanhtoan";
             break;
@@ -152,88 +163,29 @@ if ($_GET['act']) {
             // include_once "View/sendmail.php";
 
             break;
-        // case 'xuly_thanhtoan':
-           
-        //     header('Content-type: text/html; charset=utf-8');
-            
-            
-        //     function execPostRequest($url, $data)
-        //     {
-        //         $ch = curl_init($url);
-        //         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-        //         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        //         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        //         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        //                 'Content-Type: application/json',
-        //                 'Content-Length: ' . strlen($data))
-        //         );
-        //         curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-        //         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
-        //         //execute post
-        //         $result = curl_exec($ch);
-        //         //close connection
-        //         curl_close($ch);
-        //         return $result;
-        //     }
-            
-            
-        //     $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
-            
-            
-        //     $partnerCode = 'MOMOBKUN20180529';
-        //     $accessKey = 'klm05TvNBzhg7h7j';
-        //     $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
-        //     $orderInfo = "Thanh toán qua mã QR MoMo";
-        //     $amount = "10000";
-        //     $orderId = time() ."";
-        //     $redirectUrl = "http://localhost/Git_Hub/Du-An-1/index.php?mod=thanhtoan&act=success";
-        //     $ipnUrl = "https://webhook.site/b3088a6a-2d17-4f8d-a383-71389a6c600b";
-        //     $extraData = "";
-            
-            
-            
-                
-                
-            
-        //         $requestId = time() . "";
-        //         $requestType = "captureWallet";
-                
-        //         $rawHash = "accessKey=" . $accessKey . "&amount=" . $amount . "&extraData=" . $extraData . "&ipnUrl=" . $ipnUrl . "&orderId=" . $orderId . "&orderInfo=" . $orderInfo . "&partnerCode=" . $partnerCode . "&redirectUrl=" . $redirectUrl . "&requestId=" . $requestId . "&requestType=" . $requestType;
-        //         $signature = hash_hmac("sha256", $rawHash, $secretKey);
-        //         $data = array('partnerCode' => $partnerCode,
-        //             'partnerName' => "Test",
-        //             "storeId" => "MomoTestStore",
-        //             'requestId' => $requestId,
-        //             'amount' => $amount,
-        //             'orderId' => $orderId,
-        //             'orderInfo' => $orderInfo,
-        //             'redirectUrl' => $redirectUrl,
-        //             'ipnUrl' => $ipnUrl,
-        //             'lang' => 'vi',
-        //             'extraData' => $extraData,
-        //             'requestType' => $requestType,
-        //             'signature' => $signature);
-        //         $result = execPostRequest($endpoint, json_encode($data));
-        //         $jsonResult = json_decode($result, true);  // decode json
-            
-               
-            
-        //         header('Location: ' . $jsonResult['payUrl']);
-            
-            
+
         case 'success':
-            if(isset($_GET['id'])){
+            if (isset($_GET['id'])) {
                 $iddh = $_GET['id'];
-                $tongtien = 0;
-                $ship = 20000;
+                $tongphu = 0;
+
                 $listAll_ctdh = getAll_ctdh($iddh);
+                $listdetail_dh = selectone_order($iddh);
+
                 $viewName = "page_thanhtoan_thanhcong";
             }
-            
+
             break;
         default:
             $viewName = '404';
             break;
+    }
+    // $category_list = getAll_category();
+    if(!empty($_SESSION['user'])){
+        $sum_orders = getSum_orders($_SESSION['user']['id']);
+        if(empty($sum_orders)){
+            $sum_orders = 0;
+        }
     }
     include_once 'View/page_layout.php';
 }

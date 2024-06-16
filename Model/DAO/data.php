@@ -1,4 +1,0 @@
-<?php 
-    $kq = $stmt->fetchColumn();
-    
-?>

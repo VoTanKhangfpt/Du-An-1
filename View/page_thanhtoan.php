@@ -1,11 +1,13 @@
 <div class="checkout-section section pt-30 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50  pb-70 pb-lg-50 pb-md-40 pb-sm-30 pb-xs-20">
     <div class="container">
-        <div class="row"><h2 class="my-5" style="text-align:center; font-weight:bold;">THANH TOÁN</h2></div>
+        <div class="row">
+            <h2 class="my-5" style="text-align:center; font-weight:bold;">THANH TOÁN</h2>
+        </div>
         <div class="row">
             <div class="col-12">
 
                 <!-- Checkout Form Start-->
-                <form action="index.php?mod=thanhtoan&act=dathang&tongtien=<?=$tongtiengiohang?>" method="post" class="checkout-form">
+                <form action="index.php?mod=thanhtoan&act=dathang&tongtien=<?= $tongtiengiohang ?>" method="post" class="checkout-form">
                     <div class="row row-40">
 
                         <div class="col-lg-7">
@@ -14,25 +16,33 @@
                             <div id="billing-form" class="mb-10">
                                 <h4 class="checkout-title">Thông tin thanh toán</h4>
                                 <div class="row">
+                                    <?php if(isset($err)&&$err===''):?>
+                                    <div class="col-md-12 col-12 mb-5">
+                                        <div class="alert alert-warning alert-dismissible fade show" role="alert" style="font-size: 24px">
+                                            <strong>Bạn đang bị thiếu thông tin của một trong các trường sau: TÊN, EMAIL, SỐ ĐIỆN THOẠI, ĐỊA CHỈ, PHƯƠNG THỨC THANH TOÁN!</strong> Bạn vui lòng kiểm tra và nhập lại thông tin các trường bị thiếu.
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    </div>
+                                    <?php endif;?>
                                     <div class="col-md-12 col-12 mb-5">
                                         <label>Họ và tên</label>
-                                        <input name="ten" type="text" placeholder="Họ và tên">
+                                        <input value="<?php if (!empty($_SESSION['user']) && isset($_SESSION['user']['ten'])) echo $_SESSION['user']['ten']; ?>" name="ten" type="text" placeholder="Họ và tên">
                                     </div>
                                     <div class="col-md-12 col-12 mb-5">
                                         <label>Địa chỉ Email</label>
-                                        <input name="email" type="email" placeholder="Email">
+                                        <input value="<?php if (!empty($_SESSION['user']) && isset($_SESSION['user']['email'])) echo $_SESSION['user']['email']; ?>" name="email" type="email" placeholder="Email">
                                     </div>
                                     <div class="col-md-12 col-12 mb-5">
                                         <label>Số điện thoại</label>
-                                        <input name="sodienthoai" type="text" placeholder="Số điện thoại">
+                                        <input value="<?php if (!empty($_SESSION['user']) && isset($_SESSION['user']['sodienthoai'])) echo $_SESSION['user']['sodienthoai']; ?>" name="sodienthoai" type="text" placeholder="Số điện thoại">
                                     </div>
                                     <div class="col-12 mb-5">
                                         <label>Địa chỉ</label>
-                                        <input name="diachi" type="text" placeholder="Nhập địa chỉ">
+                                        <input value="<?php if (!empty($_POST['diachi']) && isset($_POST['diachi'])) echo $_POST['diachi']; ?>" name="diachi" type="text" placeholder="Nhập địa chỉ">
                                     </div>
                                     <div class="col-12 mb-5">
                                         <label>Ghi chú</label>
-                                        <textarea name="ghichu" id="" cols="30" rows="10">Thông tin bổ sung</textarea>
+                                        <textarea name="ghichu" id="" cols="30" rows="10" placeholder="Thông tin bổ sung"><?php if (!empty($_POST['ghichu']) && isset($_POST['ghichu'])) echo $_POST['ghichu']; ?></textarea>
                                     </div>
                                     <div class="col-12 mb-5">
                                         <div class="check-box">
@@ -85,21 +95,23 @@
                                         <h4>Sản phẩm <span>Tổng cộng</span></h4>
 
                                         <ul>
-                                            <?php if(is_array($show_cart_thanhtoan)){
-                                                foreach($show_cart_thanhtoan as $thanhtoan){
+                                            <?php if (is_array($show_cart_thanhtoan)) {
+                                                foreach ($show_cart_thanhtoan as $thanhtoan) {
                                                     extract($thanhtoan);
-                                                ?>
-                                            <li><?=$ten?> X <?=$soluong?> <span><?=number_format($gia_km,0,",",".")?></span></li>
-                                            <!-- <li>Adurite Silocone X 02 <span>$59.00</span></li>
+                                                    
+                                            ?>
+                                                    <li><?= $ten ?> X <?= $soluong ?> <span><?= number_format($tongtien, 0, ",", ".") ?></span></li>
+                                                    <!-- <li>Adurite Silocone X 02 <span>$59.00</span></li>
                                             <li>Baizidale Momone X 01 <span>$78.00</span></li>
                                             <li>Makorone Cicile X 01 <span>$65.00</span></li> -->
-                                            <?php }}?>
+                                            <?php }
+                                            } ?>
                                         </ul>
 
-                                        <p>Tổng phụ <span><?=number_format($tongtiengiohang,0,",",".")?> VNĐ</span></p>
-                                        <p>Phí vận chuyển <span><?=$ship?> VND</span></p>
+                                        <p>Tổng phụ <span><?= number_format($tongtiengiohang, 0, ",", ".") ?> VNĐ</span></p>
+                                        <p>Phí vận chuyển <span><?= $ship ?> VND</span></p>
 
-                                        <h4>Tổng tiền thanh toán <span><?=number_format($tongtiengiohang+$ship,0,",",".")?> VNĐ</span></h4>
+                                        <h4>Tổng tiền thanh toán <span><?= number_format($tongtiengiohang + $ship, 0, ",", ".") ?> VNĐ</span></h4>
 
                                     </div>
 
@@ -112,22 +124,22 @@
 
                                     <div class="checkout-payment-method">
 
-                                        
+
                                         <div class="single-method">
-                                            <input type="radio" id="payment_paypal" name="payment-method" value="momo">
+                                            <input type="radio" id="payment_paypal" name="payment-method" value="thanh toán qua momo">
                                             <label for="payment_paypal">Chuyển khoản MOMO </label>
-                                            
-                                            
+
+
                                         </div>
-                                        <p style="color:#fff";>Thực hiện thanh toán vào ngay tài khoản ngân hàng của chúng tôi. Vui lòng sử dụng Mã đơn hàng của bạn trong phần Nội dung thanh toán. Đơn hàng sẽ đươc giao sau khi tiền đã chuyển.</p>
+                                        <p style="color:#fff" ;>Thực hiện thanh toán vào ngay tài khoản ngân hàng của chúng tôi. Vui lòng sử dụng Mã đơn hàng của bạn trong phần Nội dung thanh toán. Đơn hàng sẽ đươc giao sau khi tiền đã chuyển.</p>
 
                                         <div class="single-method">
-                                            <input type="radio" id="payment_payoneer" name="payment-method" value="pay_order">
+                                            <input type="radio" id="payment_payoneer" name="payment-method" value="thanh toán khi nhận hàng">
                                             <label for="payment_payoneer">Thanh toán khi nhận hàng</label>
-                                            
+
                                         </div>
 
-                                        
+
 
                                     </div>
 
@@ -142,7 +154,7 @@
 
                     </div>
                 </form>
-                
+
 
             </div>
         </div>
